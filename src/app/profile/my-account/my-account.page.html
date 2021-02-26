@@ -1,0 +1,102 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <app-header isFrom="home"></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent" class="sub-header">
+    <h2>My Account</h2>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false" color="transparent">
+  <ion-grid>
+    
+    <ion-row>
+      <ion-col>
+
+        <ion-label class="label-section">Account Information</ion-label>
+        <ion-card>
+          <ion-label>Username</ion-label>
+          <p class="line-2">UserName Value</p>
+          <ion-label>Email</ion-label>
+          <p class="line-2">puguser@rsqa.com</p>
+          <ion-label>Keep me signed in</ion-label>
+          <div class="toggleButton" [ngClass]="{'greyout': !keepSignedIn}" (click)="signInToggle()">
+            <div class="icon"><i class="bgis-icon icon-check"></i></div>
+            <div class="btn-cir"></div>
+          </div>
+
+        </ion-card>
+
+        <ion-label class="label-section">Change Password</ion-label>
+        <p class="desc">To change your password, please enter your current and new password. To submit the change, please click the Change Password button below.</p>
+        <ion-card>
+          
+          <ion-row>
+            <ion-col>
+              <input-con [name]="'curPassword'" [title]="'Current Password'" [type]="'password'" [errorMessage]="'Please enter a valid value.'"
+              (iconclick)="checkInput($event)" (conclick)="checkInput($event)"></input-con>
+            </ion-col>
+          </ion-row>
+                
+          <ion-row>
+            <ion-col>
+              <input-con [name]="'newPassword'" [title]="'New Password'" [type]="'password'" [errorMessage]="'Please enter a valid value.'"
+              (iconclick)="checkInput($event)" (conclick)="checkInput($event)"></input-con>
+            </ion-col>
+          </ion-row>
+              
+          <ion-row>
+            <ion-col>
+              <input-con [name]="'newPassword2'" [title]="'Confirm New Password'" [type]="'password'" [errorMessage]="'Please enter a valid value.'"
+              (iconclick)="checkInput($event)" (conclick)="checkInput($event)"></input-con>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <div class="framed">
+                Your password must contain three of the following for criterion:
+                <ul>
+                  <li>
+                    at least one lower case letter
+                  </li>
+                  <li>
+                    at least one upper case letter
+                  </li>
+                  <li>
+                    at least one number digit
+                  </li>
+                  <li>
+                    non-alphanumeric characters<br />
+                    (eg: !, @, #, $, %)
+                  </li>
+                </ul>
+                Your password must contain at least 8 characters.
+                <br />
+                Your password cannot contain your name or Online ID.
+                <br />
+                You cannot use a preciously used password.
+              </div>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+  <ion-row class="white-bg">
+    <ion-col>
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="discard()">Discard Changes</ion-button>
+        <ion-button color="primary" (click)="save()">Save Changes</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>
+
+

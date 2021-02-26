@@ -1,0 +1,19 @@
+.sub-header{
+    .search-wrapper{
+        display: flex;
+        flex-direction: row;
+        align-items:baseline;
+        .bgis-icon{
+            padding-right: 1rem;
+            font-size: 1.5rem;
+        }
+        ion-input{
+            background-color: white;
+            color: #01447A;
+            padding-left: 0.5rem!important;
+        }
+    }
+    p{
+        padding-top: 1rem;
+    }
+}

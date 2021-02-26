@@ -1,0 +1,237 @@
+<ion-header [translucent]="false" >
+  <ion-toolbar color="primary">
+    <app-header isFrom="step2"></app-header>
+  </ion-toolbar>
+</ion-header>
+<app-sub-header [subHeader]="subHeader" (navStep)="navBackToJump($event)"></app-sub-header>
+<p class="stepper-instruction">Please enter additional information about this specific equipment.</p>
+<ion-content>
+  
+  <ion-grid class="grid-top" id="vDetails" (click)="closeDropdown()">
+    <ion-row  *ngIf="subs.Mode=='ADD'">
+      <ion-col>
+          <div class="info-wrapper">
+            <div class="info-item">
+              <div class="info-key">
+                Status*: 
+              </div>
+              <div class="info-value">
+                Active
+              </div>
+            </div>
+          </div>
+      </ion-col>
+    </ion-row>
+    <ion-row  *ngIf="subs.Mode=='EDIT'">
+      <ion-col *ngIf="step3Val.status != 'Inactive'">
+        <ion-label class="label-section">Status</ion-label>
+        <div class="button-group">
+          <div [ngClass]="{'hilite': step3Val.status=='Active'}" 
+            (click)="selectstatus(0)">Decommissioned</div>
+         
+          <div [ngClass]="{'hilite': step3Val.status!='Active'}" 
+            (click)="selectstatus(1)">Active</div>
+          </div> 
+      </ion-col>
+      <ion-col *ngIf="step3Val.status == 'Inactive'">
+        <div class="info-wrapper">
+          <div class="info-item">
+            <div class="info-key">
+              Status*: 
+            </div>
+            <div class="info-value">
+              Inactive
+            </div>
+          </div>
+        </div>
+    </ion-col>
+    </ion-row>
+
+    <ion-label class="label-section">Condition 
+      <!-- {{step3Val.status}} -->
+    </ion-label>
+    <ion-card>
+      <ion-row>
+      <ion-col>
+        <ion-label class="">Condition Rating:
+        <!-- {{step3Val.ConRateValue}} -->
+      </ion-label>
+        <ion-list class="info-wrapper">
+          <div *ngFor="let cr of ConRate; let i = index">
+          <ion-radio-group [(ngModel)]="step3Val.ConRateValue" > 
+            <ion-item  >
+                <ion-label>{{cr.Value}}</ion-label>
+                <ion-radio id="{{cr.Key}}" slot="start" [value]="cr.Key"  color="primary" class="ring" mark="false" ></ion-radio>
+              </ion-item>
+              
+            </ion-radio-group> 
+          </div>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+   
+    <ion-row>
+      <ion-col>
+        <ion-label class="">Replace Existing Equipment?</ion-label>
+        <div class="button-group">
+          <div [ngClass]="{'hilite': step3Val.isRepExistEqu}" 
+            (click)="replaceequipment(0)">No</div>
+          <div [ngClass]="{'hilite': !step3Val.isRepExistEqu}" 
+            (click)="replaceequipment(1)">Yes</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ng-container *ngIf="step3Val.isRepExistEqu">
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputUniformat'" [title]="'Building item code replaces'" [hasIcon]="true"
+           (iconclick)="getInputConEquipmentValue($event)" [valuecon]="step3Val.EquipmentSearchValue"  [errorMessage]="'Required'"
+            (conclick)="hideUfmSearchs()">
+          </input-con>
+          <div *ngIf="step3Val.showEquipmentSearchList" class="dropdown-content">
+            <div *ngIf="showNoResultBuildingItem" style="color:#00467f" (click)="resetBuildingItemInput()">No results found </div>
+            <ng-container *ngFor="let u of listEquipmentItemsFiltered; let i=index">
+              <div class="dropdown-item">
+                <div class="dropdown-inner" innerHTML="{{ u.Value  | highlighSearch : step3Val.EquipmentSearchValue}}" 
+                (mousedown)="selectEquipmentItem(i)" > </div>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ion-row>
+      <ion-col class="textarea-wrapper">
+        <ion-label position="stacked">Comment/Note:</ion-label>
+        <div class="form-input">
+          <div class="input-wrapper">
+            <textarea rows="4" required [(ngModel)]= "step3Val.commentNote" maxlength="250"></textarea>
+            <!-- <span class="placeholder">Textarea</span> -->
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    </ion-card>
+
+    <ion-label class="label-section">Attachments</ion-label>
+    <ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-label >Attachment Method:</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+        <div class="horizontal-icon-list">
+          <div>
+            <ion-icon class="circle bgis-icon icon-cam" (click)="captureImage()"></ion-icon><p>Photo</p>
+          </div>
+          <div class="browse-wrapper">
+            <ion-icon class="circle bgis-icon icon-add-folder"></ion-icon><p>Browse</p>
+            <ion-input class="ghost" type="file" accept="*/*" (change)="changeListener($event)"></ion-input>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="maxAttached">
+      <ion-col class="media-col">
+        <ion-label color="primary"><b>Max files attached!</b></ion-label>
+       </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="media-col">
+        <ion-label color="primary"><b>Photos</b></ion-label>
+        
+        <ng-container>
+          <ion-item-sliding *ngFor="let f of step3Val.files">
+            <ion-item *ngIf="(f.filepath.toLowerCase().endsWith('jpg') || f.filepath.toLowerCase().endsWith('png') || f.filepath.toLowerCase().endsWith('jpeg')) &&  f.status !='D'">
+              <ion-img [src]="f.webviewPath" class="thumb-wrapper"></ion-img>
+              <ion-label class="ion-text-wrap">
+                {{ f.filepath }}
+              </ion-label>
+              <button ion-button expandable (click)="deleteFile(f)"><ion-icon name="trash" slot="icon-only"></ion-icon></button>
+             
+            </ion-item>
+            
+          </ion-item-sliding>
+        </ng-container>
+        <!-- <ng-container *ngIf="isCapacitor">
+          <ion-item-sliding *ngFor="let f of files">
+            <ion-item (click)="openFile(f)" *ngIf="f.name.endsWith('jpg') || f.name.endsWith('png') || f.name.endsWith('jpeg')">
+              <ion-img [src]="f.webviewPath" class="thumb-wrapper"></ion-img>
+              <ion-label class="ion-text-wrap">
+                {{ f.name }}
+              </ion-label>
+              <button ion-button expandable (click)="deleteFile(f)"><ion-icon name="trash" slot="icon-only"></ion-icon></button>
+            </ion-item>
+            <ion-item-options side="start">
+              <ion-item-option (click)="deleteFile(f)" color="danger">
+                <ion-icon name="trash" slot="icon-only"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ng-container> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label color="primary"><b>Other files</b></ion-label>
+        <ng-container>
+          <ion-item-sliding *ngFor="let f of step3Val.files">
+            <ion-item  *ngIf="(f.filepath.toLowerCase().endsWith('mov') || f.filepath.toLowerCase().endsWith('mp4')) && f.status !='D'">
+              <video controls class="thumb-wrapper" preload="metadata">
+                <source [src]="f.webviewPath+'#t=0.1'" type="video/mp4">
+              </video>
+              <ion-label class="ion-text-wrap">
+                {{ f.filepath }}
+              </ion-label>
+              <button ion-button expandable (click)="deleteFile(f)"><ion-icon name="trash" slot="icon-only"></ion-icon></button>
+            </ion-item>
+            
+          </ion-item-sliding>
+        </ng-container>   
+        <!-- <ng-container *ngIf="isCapacitor">
+          <ion-item-sliding *ngFor="let f of files">
+            <ion-item (click)="openFile(f)" *ngIf="f.name.endsWith('MOV') || f.name.endsWith('mp4')">
+              <video controls class="thumb-wrapper" preload="metadata">
+                <source [src]="f.webviewPath+'#t=0.1'" type="video/mp4">
+              </video>
+              <ion-label class="ion-text-wrap">
+                {{ f.name }}
+              </ion-label>
+              <button ion-button expandable (click)="deleteFile(f)"><ion-icon name="trash" slot="icon-only"></ion-icon></button>
+            </ion-item>
+          
+            <ion-item-options side="start">
+              
+              <ion-item-option (click)="deleteFile(f)" color="danger">
+                <ion-icon name="trash" slot="icon-only"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ng-container>    -->
+          <div id="fullscreen" slot="fixed" class="temp-full"></div>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
+  </ion-grid>
+
+    
+  <ion-row>
+    <ion-col *ngIf="!subs.isJumpStep">
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="navigateToStep2Type()">Back</ion-button>
+        <ion-button color="primary" (click)="navigateToStep4Warranty()">Next</ion-button>
+      </div>
+    </ion-col>
+    <ion-col *ngIf="subs.isJumpStep">
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="navigateJumpStep5(false)">Discard Changes</ion-button>
+        <ion-button color="primary" (click)="navigateJumpStep5(true)">Save Changes</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

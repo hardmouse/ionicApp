@@ -1,0 +1,8 @@
+{
+  "name": "rcmobile",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

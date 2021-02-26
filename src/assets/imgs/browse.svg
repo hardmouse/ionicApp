@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="53px" height="52px" viewBox="0 0 53 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>browse</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-26.7%" y="-27.3%" width="153.3%" height="154.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Guile-4---All-Steps-w/-New-Stepper-+-Feedback" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.3-Description-Filled-After-Summary" transform="translate(-248.000000, -1240.000000)">
+            <g id="Attachments" transform="translate(18.000000, 1200.000000)">
+                <g id="Group" transform="translate(0.000000, 42.000000)">
+                    <g id="Group-5-Copy" transform="translate(233.248704, 0.000000)">
+                        <g id="browse" filter="url(#filter-1)" transform="translate(0.834197, 0.000000)">
+                            <circle id="Oval" fill="#00467F" cx="22.500864" cy="22" r="22"></circle>
+                            <g id="Organization-/-File-/-folder--add-/-24" transform="translate(10.165803, 10.000000)" fill="#FFFFFF">
+                                <path d="M19.5,15 L18,15 L18,18 L15,18 L15,19.5 L18,19.5 L18,22.5 L19.5,22.5 L19.5,19.5 L22.5,19.5 L22.5,18 L19.5,18 L19.5,15 Z M21,5.99999953 L12,5.99999953 L9.4425,3.4425 C9.16065271,3.15897045 8.77728344,2.99968322 8.3775,2.99999953 L3,2.99999953 C2.17157288,2.99999953 1.5,3.67157288 1.5,4.49999953 L1.5,19.4999995 C1.5,20.3284271 2.17157288,20.9999995 3,20.9999995 L12,20.9999995 L12,19.4999995 L3,19.4999995 L3,4.49999953 L8.3775,4.49999953 L10.9425,7.0575 L11.3775,7.49999953 L21,7.49999953 L21,12.75 L22.5,12.75 L22.5,7.49999953 C22.5,6.67157288 21.8284271,5.99999953 21,5.99999953 Z" id="Fill"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

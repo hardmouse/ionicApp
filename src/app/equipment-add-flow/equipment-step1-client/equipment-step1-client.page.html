@@ -1,0 +1,157 @@
+<ion-header [translucent]="false" >
+  <ion-toolbar color="primary">
+    <app-header isFrom="homeCheck"></app-header>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<app-sub-header [subHeader]="subHeader" (navStep)="navBackToJump($event)"></app-sub-header>
+<p class="stepper-instruction">Please enter the details of the equipment's location.</p>
+
+
+<ion-content>
+  
+  <ion-grid class="grid-top" id="vFloor" (click)="closeDropdown()">
+    <ion-row>
+      <ion-col>
+        <div class="info-wrapper">
+          <div class="info-item">
+            <div class="info-key">
+              Region*: 
+            </div>
+            <div class="info-value">
+              {{step1Val.RegionDesc}}
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">
+              FMZ*: 
+            </div>
+            <div class="info-value">
+              {{step1Val.FMZDesc}}
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">
+              Building*: 
+            </div>
+            <div class="info-value">
+              {{this.BuildingId + '-' + step1Val.BuildingDesc}}
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-label class="label-section">Equipment Location</ion-label>
+    <ion-card>
+      <ion-row>
+        <ion-col>
+          <ion-label class="has-tip">Criticality<span class="mandatory">*</span>:
+            <i class="bgis-icon icon-info-1 label-info" (click)="showTipCriticality()"></i>
+            <div *ngIf="showCriticalityTip && subs.publicTipShow" class="tooltip-wrapper" (click)="showCriticalityTip = false">Specifies whether the Building Item is critical or is a part of a Critical System. Determined by the Critical Environments program.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+        </ion-label>
+          <ion-list class="info-wrapper" [ngStyle]="{'border': !step1Val.isCriticalityValid ? '1px #af1685 solid': ''}" (click)="step1Val.isCriticalityValid = true;">
+            <div *ngFor="let cr of Criticality; let i = index">
+            <ion-radio-group [(ngModel)]="step1Val.CriticalityValue" > 
+              <ion-item  >
+                  <ion-label>{{cr.Value}}</ion-label>
+                  <ion-radio id="{{cr.Key}}" slot="start" [value]="cr.Key"  color="primary" class="ring" mark="false"></ion-radio>
+                </ion-item>
+                
+              </ion-radio-group> 
+            </div>
+          </ion-list>
+          <ion-text *ngIf="!step1Val.isCriticalityValid" color="danger"><i class="bgis-icon icon-warning-round"></i> Please enter a valid value</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="true">
+        <ion-col>
+          <input-con [name]="'Floor'" [title]="'Floor'" [hasIcon]="false" 
+          [isSearch]="true" [valuecon]="step1Val.floorSearchValue" (blur)="hideSearchs()"
+          [isValid]="step1Val.isFloorInputValid" [errorMessage]="'Please enter a valid value.'"
+          (iconclick)="getFloorInputConValue($event)" (conclick)="hideFloorSearchs2()"></input-con>
+          <div *ngIf="step1Val.showFloorSearchList" class="dropdown-content">
+            <div *ngIf="showNoResultFloor" style="color:#00467f" (click)="resetFloorInput()">No results found </div>
+            <ng-container *ngFor="let f of listFloorsFilter; let i=index">
+              <div class="dropdown-item">
+                <div class="dropdown-inner" innerHTML="{{ f.Value | highlighSearch : step1Val.floorSearchValue}}" 
+                (mousedown)="selectFloorItem(i)" > </div>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="step1Val.showAreaRow">
+        <ion-col id="idAreaCol">
+          <input-con [name]="'Area'" [title]="'Area'" [hasIcon]="false" 
+          [isSearch]="true" [valuecon]="step1Val.areaSearchValue" (blur)="hideAreaSearchs()" [isValid]="step1Val.isAreaInputValid" [errorMessage]="'Please enter a valid value.'"
+          (iconclick)="getAreaInputConValue($event)" (conclick)="hideAreaSearchs()"></input-con>
+          <div *ngIf="step1Val.showAreaSearchList" class="dropdown-content">
+            <div *ngIf="showNoResultArea" style="color:#00467f" (click)="resetAreaInput()">No results found </div>
+            <ng-container *ngFor="let a of listAreasFilter; let i=index">
+              <div class="dropdown-item">
+                <div class="dropdown-inner" innerHTML="{{ a.Value | highlighSearch : step1Val.areaSearchValue}}" 
+                (mousedown)="selectAreaItem(i)" (click)="selectAreaItem(i)"> </div>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <!--ion-row>
+        <ion-col>
+          <ion-label class="label-section">Client Information</ion-label>
+        </ion-col>
+      </ion-row-->
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'ClientCode'" [title]="'Client Code'" [valuecon]="step1Val.ClientCode" 
+          [maxLen]="25" (iconclick)="getClientInfo($event,'clientcode')" [infoTip]="'Reference Number used by the Client for a Building Item.'"></input-con>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputClientLocation'" [title]="'Client Location'" 
+          [valuecon]="step1Val.ClientLocation" [maxLen]="30" (iconclick)="getClientInfo($event,'location')" [infoTip]="'A brief description or unique alphanumeric value assigned by client, indicating the physical location within the building where the Building Item is servicing.'"></input-con>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputSpecificLocation'" [title]="'Specific Location'" 
+          [valuecon]="step1Val.SpecificLocation" [maxLen]="35" (iconclick)="getClientInfo($event,'specificlocation')" [infoTip]="'Describes the physical location of the Building Item within the building structure.'"></input-con>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label class="">In Heritage Area?</ion-label>
+          <div class="button-group">
+            <div [ngClass]="{'hilite': step1Val.isInHerigageArea}" 
+              (click)="switchHeritage(0)">No</div>
+          
+            <div [ngClass]="{'hilite': !step1Val.isInHerigageArea}" 
+              (click)="switchHeritage(1)">Yes</div>
+            </div> 
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+
+  <ion-row>
+    <ion-col *ngIf="!subs.isJumpStep">
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="presentAlertConfirm()">Cancel</ion-button>
+        <ion-button color="primary" (click)="navigateToType()">Next</ion-button>
+      </div>
+    </ion-col>
+    <ion-col *ngIf="subs.isJumpStep">
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="navigateJumpStep5(false)">Discard Changes</ion-button>
+        <ion-button color="primary" (click)="navigateJumpStep5(true)">Save Changes</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

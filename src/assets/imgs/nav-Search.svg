@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Search</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bottom-Bar" transform="translate(-272.000000, -8.000000)" fill="#FFFFFF">
+            <g id="Group" transform="translate(27.000000, 6.000000)">
+                <g id="Group-2" transform="translate(242.000000, 1.000000)">
+                    <g id="search" transform="translate(2.000000, 0.000000)">
+                        <g id="Actions-/-Operations-/-search-/-24">
+                            <path d="M16.3968751,15.6262219 L12.2703282,11.4778125 C14.3195711,9.00525146 14.0638637,5.35871573 11.6896038,3.19634558 C9.31534382,1.03397543 5.66084888,1.11927315 3.39006101,3.39006101 C1.11927315,5.66084888 1.03397543,9.31534382 3.19634558,11.6896038 C5.35871573,14.0638637 9.00525146,14.3195711 11.4778125,12.2703282 L15.6262219,16.3968751 L16.3968751,15.6262219 Z M2.73281251,7.65187503 C2.73281251,4.93515182 4.93515182,2.73281251 7.65187503,2.73281251 C10.3685982,2.73281251 12.5709376,4.93515182 12.5709376,7.65187503 C12.5709376,10.3685982 10.3685982,12.5709376 7.65187503,12.5709376 C4.93515182,12.5709376 2.73281251,10.3685982 2.73281251,7.65187503 Z" id="Fill"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

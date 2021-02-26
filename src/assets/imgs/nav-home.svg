@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="17px" viewBox="0 0 20 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>home</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bottom-Bar" transform="translate(-28.000000, -7.000000)" fill="#FFFFFF">
+            <g id="Group" transform="translate(27.000000, 6.000000)">
+                <g id="Group-4-Copy">
+                    <g id="Actions-/-Navigation-/-home-/-24" transform="translate(1.000000, 0.000000)">
+                        <path d="M10.38125,1.38125 C10.154097,1.20175151 9.83340297,1.20175151 9.60625,1.38125 L0.625,8.3875 L1.4,9.375 L2.5,8.5125 L2.5,16.25 C2.5,16.9403559 3.05964406,17.5 3.75,17.5 L16.25,17.5 C16.9403559,17.5 17.5,16.9403559 17.5,16.25 L17.5,8.51875 L18.6,9.375 L19.375,8.39375 L10.38125,1.38125 Z M11.25,16.25 L8.75,16.25 L8.75,11.25 L11.25,11.25 L11.25,16.25 Z M12.5,16.25 L12.5,11.25 C12.5,10.5596441 11.9403559,10 11.25,10 L8.75,10 C8.05964406,10 7.5,10.5596441 7.5,11.25 L7.5,16.25 L3.75,16.25 L3.75,7.5375 L10,2.66875 L16.25,7.54375 L16.25,16.25 L12.5,16.25 Z" id="Fill"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

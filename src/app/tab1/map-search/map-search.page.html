@@ -1,0 +1,17 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <app-header></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent" class="sub-header">
+    <div class="search-wrapper">
+      <i class="bgis-icon icon-left" (click)="gotoSelectedArea()"></i>
+      <ion-input [(ngModel)]="searcheArea" placeholder="Search Address"></ion-input>
+    </div>
+    <p>Click the map to select area</p>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" color="transparent">
+  <div #map id="map" class="map-container"></div>
+</ion-content>

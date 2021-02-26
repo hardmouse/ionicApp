@@ -1,0 +1,20 @@
+ion-grid{
+    padding-top: 0;
+}
+ion-card{
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+p{
+    margin: 0;
+}
+.option-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 2.5rem;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    padding: 0.3rem;
+    margin-top: 0.5rem;;
+}

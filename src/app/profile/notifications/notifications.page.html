@@ -1,0 +1,68 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <app-header isFrom="home"></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent" class="sub-header">
+    <h2>Notifications</h2>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="false" color="transparent">
+  <ion-grid>
+  <p>
+    To save any changes to your notification preferences, please click the Update Notifications button below.
+  </p>
+    <ion-row>
+      <ion-col>
+
+        <ion-label class="label-section">Personal Information</ion-label>
+        <ion-card>
+          
+          <!-- <ion-row>
+            <ion-col>
+              <input-con [name]="'NotificationLanguage'" [title]="'Notification Language'"
+              [hasIcon]="true" [valuecon]="langValue" (blur)="blur()" [errorMessage]="'Please enter a valid value.'"
+              (iconclick)="checkInput($event)" (conclick)="checkInput($event)"></input-con>
+              <div *ngIf="langPick" class="dropdown-content">
+                <ng-container *ngFor="let lang of mockLang; let i=index">
+                  <div class="dropdown-item">
+                    <div class="dropdown-inner" innerHTML="{{ lang }}" (mousedown)="setLang(i)"> </div>
+                  </div>
+                </ng-container>
+              </div>
+            </ion-col>
+          </ion-row> -->
+
+          <ion-row>
+            <ion-col>
+              <div *ngFor="let option of optionList; let i=index" class="option-wrapper">
+                <div>
+                  {{option.text}}
+                </div>
+                <div class="toggleButton" [ngClass]="{'greyout': !option.value}" (click)="option.value = !option.value">
+                  <div class="icon"><i class="bgis-icon icon-check"></i></div>
+                  <div class="btn-cir"></div>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+  <ion-row class="bottom-ion-row">
+    <ion-col>
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="discard()">Discard Changes</ion-button>
+        <ion-button color="primary" (click)="save()">Update Notifications</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>

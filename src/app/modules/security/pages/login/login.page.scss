@@ -1,0 +1,41 @@
+ion-content{
+    --ion-background-color:rgb(1,71,129);
+}
+
+ion-grid{
+    height: 100%;
+    display: flex; flex-flow: column;
+    .version{
+        flex-grow: 1;
+        ion-col{
+            align-self:flex-end;
+        }
+    }
+}
+
+.btnLogin {
+    --background: white;
+    color: black;    
+    width: 75%;
+    --border-radius: 4px;
+}
+.realCondition
+{
+    color: white;
+    font-size: 25px;
+    margin-top: 30%;
+}
+.marginTop50percent {
+    margin-top: 50%;
+}
+.marginTop10percent {
+    margin-top: 10%;
+}
+
+ion-header.loginPage {
+    margin-top: 25vh;
+}
+
+ion-content.loginPage {
+   
+}

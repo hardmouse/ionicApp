@@ -1,0 +1,32 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <app-header isFrom="login"></app-header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header [translucent]="false" class="ion-no-border" class="loginPage">
+  <ion-toolbar color="transparent" class="sub-header">
+    <h2>RealCondition</h2>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" color="transparent" class="loginPage">
+  <ion-grid>
+
+    <ion-row class="ion-align-items-center ">
+      <ion-col size="12" class="ion-text-center">
+
+        <ion-button type="submit" 
+        class='btnLogin' 
+        (click)="onLogin()">Login
+      </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center version">
+      <ion-col size="12" class="ion-text-center">
+        <div>Version: {{subs.version}}</div>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+</ion-content>

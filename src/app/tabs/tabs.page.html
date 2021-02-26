@@ -1,0 +1,36 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom" color="primary">
+
+    <!-- <ion-tab-button tab="tab1">
+      <ion-icon class="tab bgis-icon nav-home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button> -->
+
+    <ion-tab-button tab="equipmentaddtab">
+      <ion-icon class="tab bgis-icon icon-plus-1"></ion-icon>
+      <ion-label>{{ 'AddEquipment' | apptranslate: 'MENU' | async }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2">
+      <ion-icon class="tab bgis-icon icon-inbox"></ion-icon>
+      <ion-label>{{ 'MyRequests' | apptranslate: 'MENU' | async }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon class="tab bgis-icon icon-nav-building"></ion-icon>
+      <ion-label>{{ 'FindBuilding' | apptranslate: 'MENU' | async }}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab1">
+      <ion-icon class="tab bgis-icon icon-search-1"></ion-icon>
+      <ion-label>{{ 'FindEquipment' | apptranslate: 'MENU' | async }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button [disabled]="download" (click)="onDownLoad()">
+      <ion-icon class="tab bgis-icon icon-offline"></ion-icon>
+      <ion-label>{{ 'DOWNLOADDATA' | apptranslate: 'MENU' | async }}</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+  <ion-progress-bar *ngIf="download" color="success" [value]="progress"></ion-progress-bar>
+</ion-tabs>

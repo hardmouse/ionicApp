@@ -1,0 +1,6 @@
+<div *ngFor="let link of optionLinks; let i = index" class="option" (click)="presentAlertConfirm(i)">
+  <i [ngClass]="['bgis-icon',link.icon]"></i> {{link.name}}
+</div>
+<sub>
+  Ver. {{subs.version}}
+</sub>

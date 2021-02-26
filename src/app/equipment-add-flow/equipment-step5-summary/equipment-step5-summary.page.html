@@ -1,0 +1,561 @@
+<ion-header [translucent]="false" >
+  <ion-toolbar color="primary">
+    <app-header [isFrom]="(this.subs.isEditChanged)?'step4':'home'"></app-header>
+  </ion-toolbar>
+</ion-header>
+<app-sub-header [subHeader]="subHeader" (navStep)="navBackTo($event)"></app-sub-header><ion-content>
+  <p class="stepper-instruction">Please review your request below. To submit the request, please tap the Submit Request button.</p>
+  <ion-grid class="grid-top" id="vSummary">
+    <ion-row>
+      <ion-col>
+        <div class="info-wrapper location">
+          <div class="info-item">
+            <div class="info-key">
+              Region*: 
+            </div>
+            <div class="info-value">
+              {{step1Val.RegionDesc}}
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">
+              FMZ*: 
+            </div>
+            <div class="info-value">
+              {{step1Val.FMZDesc}}
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">
+              Building*: 
+            </div>
+            <div class="info-value">
+              {{step1Val.BuildingDesc}}
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-between">
+        <ion-label class="label-section">Equipment Location
+        </ion-label>
+      <ion-col size="2" class="ion-text-right" (click)="navBackTo(1)">  
+        <ion-icon class="circle bgis-icon icon-edit-pen"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-card>
+    <ion-row>
+      <ion-col>
+        <div class="info-wrapper no-border">
+          <div class="info-item">
+            <div class="info-key">
+              Criticality: 
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step1ValBak.CriticalityValue!=step1Val.CriticalityValue)&&Mode=='EDIT'"> {{(step1ValBak.CriticalityValue=="")?"N/A":step1ValBak.CriticalityValue}}</span>
+              <span> {{criticalityDesc}}</span>
+            </div>
+          </div>
+          <div class="info-item" *ngIf="step1Val.floorSearchValue!=''">
+            <div class="info-key">
+              Floor: 
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step1ValBak.floorSearchValue!=step1Val.floorSearchValue)&&Mode=='EDIT'"> {{(step1ValBak.floorSearchValue=="")?"N/A":step1ValBak.floorSearchValue}}</span>
+              <span> {{step1Val.floorSearchValue}}</span>
+            </div>
+          </div>
+          <div class="info-item" *ngIf="step1Val.areaSearchValue!=''">
+            <div class="info-key">
+              Area: 
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step1ValBak.areaSearchValue!=step1Val.areaSearchValue)&&Mode=='EDIT'"> {{(step1ValBak.areaSearchValue=="")?"N/A":step1ValBak.areaSearchValue}}</span>
+              <span> {{step1Val.areaSearchValue}}</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">
+              In Heritage Area? 
+            </div>
+            <div class="info-value dirty-data">
+              
+              <span class="previous-value" *ngIf="(step1ValBak.isInHerigageArea !=step1Val.isInHerigageArea)&&Mode=='EDIT'"> {{(step1ValBak.isInHerigageArea)? 'Yes':'No'}}</span>
+              <span> {{(step1Val.isInHerigageArea)? 'Yes':'No'}}</span>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="step1Val.ClientCode!='' || step1Val.ClientLocation!='' || step1Val.SpecificLocation!=''">
+         
+          <div class="info-wrapper no-border">
+            <ion-label style="margin-left: 0.5rem;" color="primary"><b>Client Information</b></ion-label>
+           
+            <div class="info-item" *ngIf="step1Val.ClientCode!=''">
+              <div class="info-key">
+                Client Code: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step1ValBak.ClientCode!=step1Val.ClientCode)&&Mode=='EDIT'"> {{(step1ValBak.ClientCode=="")?"N/A":step1ValBak.ClientCode}}</span>
+                <span> {{step1Val.ClientCode}}</span>
+              </div>
+            </div>
+            <div class="info-item"  *ngIf="step1Val.ClientLocation!=''">
+              <div class="info-key">
+                Client Location: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step1ValBak.ClientLocation!=step1Val.ClientLocation)&&Mode=='EDIT'"> {{(step1ValBak.ClientLocation=="")?"N/A":step1ValBak.ClientLocation}}</span>
+                <span> {{step1Val.ClientLocation}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step1Val.SpecificLocation!=''">
+              <div class="info-key">
+                Specific Location: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step1ValBak.SpecificLocation!=step1Val.SpecificLocation)&&Mode=='EDIT'"> {{(step1ValBak.SpecificLocation=="")?"N/A":step1ValBak.SpecificLocation}}</span>
+                <span> {{step1Val.SpecificLocation}}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-row class="ion-justify-content-between">
+        <ion-label class="label-section">Equipment
+        </ion-label>
+      <ion-col size="2" class="ion-text-right" (click)="navBackTo(2)">  
+        <ion-icon class="circle bgis-icon icon-edit-pen"></ion-icon>
+      </ion-col>
+  </ion-row>
+  <ion-card>
+  <ion-row>
+    <ion-col>
+      <div class="info-wrapper no-border">
+        <div class="info-item" *ngIf="Mode=='EDIT'">
+          <div class="info-key">
+            Status: 
+          </div>
+          <div class="info-value dirty-data">
+            <span class="previous-value" *ngIf="(step3ValBak.status!=step3Val.status)&&Mode=='EDIT'"> {{(step3Val.status != undefined && step3Val.status != '')? step3Val.status:"Active"}}</span>
+            <span> {{(step3Val.status != undefined && step3Val.status != '')? step3Val.status:"Active"}}</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-key" *ngIf="step2Val.IsDFM !== undefined && step2Val.IsDFM!='N'">
+            Uniformat:
+          </div>
+          <div class="info-key" *ngIf="step2Val.IsDFM !== undefined && step2Val.IsDFM=='N'">
+            Building Item Type:
+          </div>
+          <div class="info-value dirty-data">
+            <span class="previous-value" *ngIf="(step2ValBak.UniformatSearchValue!=step2Val.UniformatSearchValue)&&Mode=='EDIT'"> {{(step2ValBak.UniformatSearchValue=="")?"N/A":step2ValBak.UniformatSearchValue}}</span>
+            <span> {{step2Val.UniformatSearchValue}}</span>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="step2Val.IsDFM !== undefined && step2Val.IsDFM=='N'" >
+          <div class="info-key">
+            System Type: 
+          </div>
+          <div class="info-value dirty-data">
+            <span class="previous-value" *ngIf="(step2ValBak.SystemTypeValue!=step2Val.SystemTypeValue)&&Mode=='EDIT'"> {{(step2ValBak.SystemTypeValue=="")?"N/A":step2ValBak.SystemTypeValue}}</span>
+            <span> {{step2Val.SystemTypeValue}}</span>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="step2Val.DescriptionValue!=''">
+          <div class="info-key">
+            Description:
+          </div>
+          <div class="info-value dirty-data">
+            <span class="previous-value" *ngIf="(step2ValBak.DescriptionValue!=step2Val.DescriptionValue)&&Mode=='EDIT'"> {{(step2ValBak.DescriptionValue=="")?"N/A":step2ValBak.DescriptionValue}}</span>
+            <span> {{step2Val.DescriptionValue}}</span>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="step2Val.DescriptionFrValue!=''">
+          <div class="info-key">
+            French Description:
+          </div>
+          <div class="info-value dirty-data">
+            <span class="previous-value" *ngIf="(step2ValBak.DescriptionFrValue!=step2Val.DescriptionFrValue)&&Mode=='EDIT'"> {{(step2ValBak.DescriptionFrValue=="")?"N/A":step2ValBak.DescriptionFrValue}}</span>
+            <span> {{step2Val.DescriptionFrValue}}</span>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="step2Val.ParentItemSearchValue!=''">
+          <div class="info-key">
+            Parent Item:
+          </div>
+          <div class="info-value dirty-data">
+            <span class="previous-value" *ngIf="(step2ValBak.ParentItemSearchValue!=step2Val.ParentItemSearchValue)&&Mode=='EDIT'"> {{(step2ValBak.ParentItemSearchValue=="")?"N/A":step2ValBak.ParentItemSearchValue}}</span>
+            <span> {{step2Val.ParentItemSearchValue}}</span>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+    </ion-row>
+    <ng-container>
+      <ion-row *ngIf="showUPC">
+        <ion-col>
+          <ion-label style="margin-left: 0.6rem;" color="primary"><b>UPC - Product Information</b></ion-label>
+          <div class="info-wrapper no-border">
+            <div class="info-item" *ngIf="step2Val.FieldItemNumber!=''">
+              <div class="info-key">
+                Field Item Number: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step2ValBak.FieldItemNumber!=step2Val.FieldItemNumber)&&Mode=='EDIT'"> {{(step2ValBak.FieldItemNumber=="")?"N/A":step2ValBak.FieldItemNumber}}</span>
+                <span> {{step2Val.FieldItemNumber}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step2Val.ModelNumber!=''">
+              <div class="info-key">
+              Model Number: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step2ValBak.ModelNumber!=step2Val.ModelNumber)&&Mode=='EDIT'"> {{(step2ValBak.ModelNumber=="")?"N/A":step2ValBak.ModelNumber}}</span>
+                <span> {{step2Val.ModelNumber}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step2Val.Manufacturer!=''">
+              <div class="info-key">
+                Manufacturer: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step2ValBak.Manufacturer!=step2Val.Manufacturer)&&Mode=='EDIT'"> {{(step2ValBak.Manufacturer=="")?"N/A":step2ValBak.Manufacturer}}</span>
+                <span> {{step2Val.Manufacturer}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step2Val.ModelName!=''">
+              <div class="info-key">
+                Model Name: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step2ValBak.ModelName!=step2Val.ModelName)&&Mode=='EDIT'"> {{(step2ValBak.ModelName=="")?"N/A":step2ValBak.ModelName}}</span>
+                <span> {{step2Val.ModelName}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step2Val.SerialNumber!=''">
+              <div class="info-key">
+                Serial Number: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step2ValBak.SerialNumber!=step2Val.SerialNumber)&&Mode=='EDIT'"> {{(step2ValBak.SerialNumber=="")?"N/A":step2ValBak.SerialNumber}}</span>
+                <span> {{step2Val.SerialNumber}}</span>
+              </div>
+            </div>
+            <div class="info-item"  *ngIf="step2Val.ManufacturerDate!=null">
+              <div class="info-key">
+                Manufacturer Date: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step2ValBak.sManufacturerDate!=step2Val.sManufacturerDate)&&Mode=='EDIT'"> {{(step2ValBak.sManufacturerDate=="")?"N/A":step2ValBak.sManufacturerDate}}</span>
+                <span> {{step2Val.sManufacturerDate}}</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+   </ion-card>
+   
+   <ion-row *ngIf="Mode=='ADD'">
+     <ion-col>
+         <div class="info-wrapper">
+           <div class="info-item">
+             <div class="info-key">
+               Status*: 
+             </div>
+             <div class="info-value">
+               {{(step3Val.status != '')? step3Val.status:"Active"}}
+             </div>
+           </div>
+         </div>
+     </ion-col>
+   </ion-row>
+
+   
+    <ion-card *ngIf="showEquipmentSepc" style="margin-top: 0.5rem;">
+      <ng-container>
+        <ion-row >
+          <ion-col>
+            <ion-label class="label-section">Equipment Specific Information</ion-label>
+          </ion-col>
+        </ion-row>
+        <ng-container *ngFor="let udf of step2Val.UniformatSelected.UDescList; let i=index">
+        
+          <ion-row *ngIf="udf.UDFOptionSearchValue!='' && udf.UDFOptionSearchValue!=undefined">
+            <ion-col>
+            
+              <div class="info-wrapper no-border" >
+                <div class="info-item" >
+                  <div class="info-key">
+                    {{udf.Description}}: 
+                  </div>
+                  <div class="info-value dirty-data">
+                    <span class="previous-value" *ngIf="(udf.UDFOptionSearchValueBak!=udf.UDFOptionSearchValue)&&Mode=='EDIT'"> {{(udf.UDFOptionSearchValueBak==undefined || udf.UDFOptionSearchValueBak==null || udf.UDFOptionSearchValueBak=='')?"N/A":udf.UDFOptionSearchValueBak}}</span>
+                    <span> {{udf.UDFOptionSearchValue}}</span>
+                  </div>
+                </div>
+              </div> 
+            </ion-col>
+          </ion-row>
+        
+        </ng-container>
+      </ng-container>
+    
+    </ion-card>
+
+    <ion-row class="ion-justify-content-between" *ngIf="step3Val.isRepExistEqu ||step3Val.commentNote!=''|| step3Val.ConRateValue!=''">
+        <ion-label class="label-section">Equipment Details
+        </ion-label>
+      <ion-col size="2" class="ion-text-right" (click)="navBackTo(3)">  
+        <ion-icon class="circle bgis-icon icon-edit-pen"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-card *ngIf="step3Val.isRepExistEqu ||step3Val.commentNote!=''|| step3Val.ConRateValue!=''">
+    <ion-row >
+      <ion-col>
+        <div class="info-wrapper no-border">
+          
+          <div class="info-item" *ngIf="step3Val.commentNote!=''">
+            <div class="info-key">
+              Comment/Note:
+            </div>
+            <div class="info-value">
+              <!-- <span class="previous-value">FDSAFDSAFD</span> -->
+              {{step3Val.commentNote}}
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key" *ngIf="step3Val.ConRateValue!=''">
+              Condition Rating:
+            </div>
+            
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step3ValBak.ConRateValue!=step3Val.ConRateValue)&&Mode=='EDIT'"> {{(step3ValBak.ConRateValue=="")?"N/A":step3ValBak.ConRateValue}}</span>
+              <span> {{conditionRatingDesc}}</span>
+            </div>
+          </div>
+          <ng-container *ngIf="step3Val.isRepExistEqu">
+            <ion-row>
+              <ion-col>
+                <div class="info-item" *ngIf="step3Val.EquipmentSearchValue!=''">
+                  <div class="info-key">
+                    Building Item code replcaes:
+                  </div>
+                  <div class="info-value dirty-data">
+                    <span class="previous-value" *ngIf="(step3ValBak.EquipmentSearchValue!=step3Val.EquipmentSearchValue)&&Mode=='EDIT'"> {{(step3ValBak.EquipmentSearchValue=="")?"N/A":step3ValBak.EquipmentSearchValue}}</span>
+                    <span> {{step3Val.EquipmentSearchValue}}</span>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ion-row>
+    </ion-card>
+
+    <ion-row class="ion-justify-content-between">
+        <ion-label class="label-section">Attachments
+        </ion-label>
+      <ion-col size="2" class="ion-text-right" (click)="navBackTo(3)">  
+        <ion-icon class="circle bgis-icon icon-edit-pen"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-card>
+    <ion-row>
+      <ion-col class="media-col">
+        <ion-label style="margin-left: 0.6rem;" color="primary"><b>Photos</b></ion-label>
+        <ion-item-sliding *ngFor="let f of step3Val.files">
+          <ion-item *ngIf="(f.filepath.toLowerCase().endsWith('jpg') || f.filepath.toLowerCase().endsWith('png') || f.filepath.toLowerCase().endsWith('jpeg')) && f.status !='D'">
+            <ion-img [src]="f.webviewPath" class="thumb-wrapper"></ion-img>
+            <ion-label class="ion-text-wrap">
+              {{ f.filepath }}
+            </ion-label>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="media-col">
+        <ion-label style="margin-left: 0.6rem;" color="primary"><b>Others</b></ion-label>
+        <ion-item-sliding *ngFor="let f of step3Val.files">
+          <ion-item *ngIf="(f.filepath.toLowerCase().endsWith('mov') || f.filepath.toLowerCase().endsWith('mp4')) && f.status !='D'">
+            <video controls class="thumb-wrapper" preload="metadata">
+              <source [src]="f.webviewPath+'#t=0.1'" type="video/mp4">
+            </video>
+            <ion-label class="ion-text-wrap">
+              {{ f.filepath }}
+            </ion-label>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-col>
+    </ion-row>
+    </ion-card>
+
+    <ion-row class="ion-justify-content-between">
+        <ion-label class="label-section">Maintenance Warranty
+        </ion-label>
+      <ion-col size="2" class="ion-text-right" (click)="navBackTo(4)">  
+        <ion-icon class="circle bgis-icon icon-edit-pen"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-card>
+    <ion-row>
+      <ion-col>
+        <div class="info-wrapper no-border">
+          
+          <div class="info-item">
+            <div class="info-key">
+              Start Date:
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step4ValBak.StartDate!=step4Val.StartDate)&&Mode=='EDIT'"> {{(step4ValBak.StartDate=="")?"N/A":step4ValBak.StartDate}}</span>
+              <span> {{step4Val.StartDate}}</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-key">
+              Key Date:
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step4ValBak.KeyDate!=step4Val.KeyDate)&&Mode=='EDIT'"> {{(step4ValBak.KeyDate=="")?"N/A":step4ValBak.KeyDate}}</span>
+              <span> {{step4Val.KeyDate}}</span>
+            </div>
+          </div>
+          <div class="info-item" *ngIf="step4Val.WarrantyVenderName !=''">
+            <div class="info-key">
+              Warranty Vendor Name:
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step4ValBak.WarrantyVenderName!=step4Val.WarrantyVenderName)&&Mode=='EDIT'"> {{(step4ValBak.WarrantyVenderName=="")?"N/A":step4ValBak.WarrantyVenderName}}</span>
+              <span> {{step4Val.WarrantyVenderName}}</span>
+            </div>
+          </div>
+          <div class="info-item" *ngIf="step4Val.InstallationDate !=null">
+            <div class="info-key">
+              Installation Date:
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step4ValBak.sInstallationDate!=step4Val.sInstallationDate)&&Mode=='EDIT'"> {{(step4ValBak.sInstallationDate=="")?"N/A":step4ValBak.sInstallationDate}}</span>
+              <span> {{step4Val.sInstallationDate}}</span>
+            </div>
+          </div>
+          <div class="info-item"  *ngIf="step4Val.PartsWarrantyDate !=null">
+            <div class="info-key">
+              Parts Warranty Date:
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step4ValBak.sPartsWarrantyDate!=step4Val.sPartsWarrantyDate)&&Mode=='EDIT'"> {{(step4ValBak.sPartsWarrantyDate=="")?"N/A":step4ValBak.sPartsWarrantyDate}}</span>
+              <span> {{step4Val.sPartsWarrantyDate}}</span>
+            </div>
+          </div>
+          <div class="info-item" *ngIf="step4Val.LabourWarrantyDate !=null">
+            <div class="info-key">
+              Labour Warranty Date:
+            </div>
+            <div class="info-value dirty-data">
+              <span class="previous-value" *ngIf="(step4ValBak.sLabourWarrantyDate!=step4Val.sLabourWarrantyDate)&&Mode=='EDIT'"> {{(step4ValBak.sLabourWarrantyDate=="")?"N/A":step4ValBak.sLabourWarrantyDate}}</span>
+              <span> {{step4Val.sLabourWarrantyDate}}</span>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ng-container *ngIf="!step4Val.isMaintenanceResponsibility">
+      <ion-row>
+        <ion-col>
+          <div class="info-wrapper no-border">
+            <div class="info-item"  *ngIf="step4Val.ResponsibilityValue !=null && step4Val.ResponsibilityValue !=''">
+              <div class="info-key">
+                PM Responsibility:
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.ResponsibilityValue!=step4Val.ResponsibilityValue)&&Mode=='EDIT'"> {{(step4ValBak.ResponsibilityValue=="")?"N/A":step4ValBak.ResponsibilityValue}}</span>
+                <span> {{step4Val.ResponsibilityValue}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step4Val.PMResponsibilityComment !=''">
+              <div class="info-key">
+                PM Responsibility Comment:
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.PMResponsibilityComment!=step4Val.PMResponsibilityComment)&&Mode=='EDIT'"> {{(step4ValBak.PMResponsibilityComment=="")?"N/A":step4ValBak.PMResponsibilityComment}}</span>
+                <span> {{step4Val.PMResponsibilityComment}}</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container>
+      <ion-row *ngIf="showPurchaseInfo">
+        <ion-col>
+          <ion-label style="margin-left: 0.6rem;" color="primary"><b>Purchase Information</b></ion-label>
+          <div class="info-wrapper no-border">
+            <div class="info-item" *ngIf="step4Val.PurchaseDate!=null">
+              <div class="info-key">
+                Purchase Date: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.sPurchaseDate!=step4Val.sPurchaseDate)&&Mode=='EDIT'"> {{(step4ValBak.sPurchaseDate=="")?"N/A":step4ValBak.sPurchaseDate}}</span>
+                <span> {{step4Val.sPurchaseDate}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step4Val.PurchasePrice!=''">
+              <div class="info-key">
+                Purchase Price (exclud.tax)($): 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.PurchasePrice!=step4Val.PurchasePrice)&&Mode=='EDIT'"> {{(step4ValBak.PurchasePrice=="")?"N/A":step4ValBak.PurchasePrice}}</span>
+                <span> {{step4Val.PurchasePrice}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step4Val.OwnershipValue!=''">
+              <div class="info-key">
+                Ownership: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.OwnershipValue!=step4Val.OwnershipValue)&&Mode=='EDIT'"> {{(step4ValBak.OwnershipValue=="")?"N/A":step4ValBak.OwnershipValue}}</span>
+                <span> {{step4Val.OwnershipValue}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step4Val.AcquisitionStatusValue!=''">
+              <div class="info-key">
+                Acquisition Status: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.AcquisitionStatusValue!=step4Val.AcquisitionStatusValue)&&Mode=='EDIT'"> {{(step4ValBak.AcquisitionStatusValue=="")?"N/A":step4ValBak.AcquisitionStatusValue}}</span>
+                <span> {{step4Val.AcquisitionStatusValue}}</span>
+              </div>
+            </div>
+            <div class="info-item" *ngIf="step4Val.DispositionStatus!=''">
+              <div class="info-key">
+                Disposition Status: 
+              </div>
+              <div class="info-value dirty-data">
+                <span class="previous-value" *ngIf="(step4ValBak.DispositionStatus!=step4Val.DispositionStatus)&&Mode=='EDIT'"> {{(step4ValBak.DispositionStatus=="")?"N/A":step4ValBak.DispositionStatus}}</span>
+                <span> {{step4Val.DispositionStatus}}</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+     
+    </ng-container>
+    </ion-card>
+  </ion-grid>
+
+  <ion-row>
+    <ion-col>
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="navigateToStep4Warranty()">Back</ion-button>
+        <ion-button color="primary" (click)="SubmitSummary()">Submit</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

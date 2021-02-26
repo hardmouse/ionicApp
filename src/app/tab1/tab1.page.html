@@ -1,0 +1,173 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <app-header></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent" class="sub-header">
+    <h2 *ngIf="subs.Tabs=='EDIT'||subs.Tabs==''" (click)="debug()" >Find Equipment</h2>
+    <h2 *ngIf="subs.Tabs=='ADD'" >Add Equipment</h2>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false" color="transparent" >
+  <ion-grid (click)="closeDropdown()">
+   
+    <!-- <ion-row *ngIf="subs.Tabs=='ADD'" >
+      <ion-col>
+      
+        <input-con
+          [name]="'searchedit'" 
+          [title]="'Search Building'"
+          [valuecon]="equipSearchValue"
+          [isSearch]="true" 
+          [maxLen]="25"
+          (blur)="resetDropdown()"
+          (conclick)="conClick()"
+          (iconclick)="getEquipValue($event)"
+          [hasplaceholder]="true"
+        ></input-con>
+        
+       
+      </ion-col>
+    </ion-row> -->
+
+   
+    <ion-row *ngIf="subs.Tabs=='EDIT'||subs.Tabs==''" >
+      <ion-col>
+      
+        <input-con
+          [name]="'searchedit'"
+          [title]="'Search Equipment'"
+          [valuecon]="equipSearchValue"
+          [isSearch]="true" 
+          [maxLen]="25"
+          (blur)="resetDropdown()"
+          (conclick)="conClick()"
+          (iconclick)="getEquipValue($event)"
+          [hasplaceholder]="true"
+        ></input-con>
+        
+        <div *ngIf="showSearchEquipList" class="dropdown-content long" style="width: 97%;right:0.3rem;">
+          <div *ngIf="showNoResult" style="color:#00467f">No results found </div>
+          <ng-container *ngFor="let sl of equipFilter; let i=index">
+            <div class="dropdown-item">
+              <div class="dropdown-inner equip" (mousedown)="selectSearchEquipItem(i)" >
+                <div class="inner-item">
+                  <span>Equipment Number</span>
+                  <span innerHTML="{{ sl.Eqnum | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item">
+                  <span>Status</span>
+                  <span innerHTML="{{ sl.Status | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item">
+                  <span>Uniformat</span>
+                  <span innerHTML="{{ sl.EqtypeCode + '-' + sl.ShortDesc | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item">
+                  <span>Description</span>
+                  <span innerHTML="{{ sl.Description | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item" *ngIf="sl.SerialNum">
+                  <span>Serial #</span>
+                  <span innerHTML="{{ sl.SerialNum | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item" *ngIf="sl.FieldItemNum">
+                  <span>Field Item #</span>
+                  <span innerHTML="{{ sl.FieldItemNum | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item" *ngIf="sl.Manufacturer">
+                  <span>Manufacturer</span>
+                  <span innerHTML="{{ sl.Manufacturer | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item" *ngIf="sl.ModelName">
+                  <span>Model Name</span>
+                  <span innerHTML="{{ sl.ModelName | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <div class="inner-item" *ngIf="sl.ModelNumber">
+                  <span>Model #</span>
+                  <span innerHTML="{{ sl.ModelNumber | highlighSearch : equipSearchValue}}"></span>
+                </div>
+                <ion-icon class="corner bgis-icon icon-edit-pen"></ion-icon>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row >
+      <ion-col style="margin:10px 0 0 0;">
+        <ion-label *ngIf="subs.Tabs=='EDIT'||subs.Tabs==''" >Searching selected buildings:
+        </ion-label>
+        <ion-label *ngIf="subs.Tabs=='ADD'" >Buildings near you:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="subs.Tabs=='EDIT'">
+      <ion-col  style="border:0px red solid;">
+        <ion-card style="min-height: 90px;overflow-y: scroll;max-height: 228px;overflow-y: scroll;">
+          <ng-container *ngFor="let building of areaBuildinglist; let i = index" >
+            <ion-item lines="full" style="padding-left: 0px;">
+              <ion-label style="font-size: 15px;" [ngClass]="{'has-selected' : building.BuildingId == BuildingId}" (click)="switchBuilding(i)">{{building.BuildingDesc}}</ion-label>
+              
+            </ion-item>
+          </ng-container>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="subs.Tabs=='ADD'">
+      <ion-col  style="border:0px red solid;">
+        <ion-card style="min-height: 90px;overflow-y: scroll;max-height: 228px;overflow-y: scroll;">
+          <ng-container *ngFor="let building of areaBuildinglist; let i = index" >
+            <ion-item lines="full" style="padding-left: 0px;" (click)="selectSearchBuilding(i)">
+              <ion-label style="font-size: 15px;"   (click)="switchBuilding(i)">{{building.BuildingDesc}}</ion-label>
+              <button *ngIf="subs.Tabs=='ADD'" mat-button matSuffix mat-icon-button aria-label="add" style="background-color:white;" (click)="selectSearchBuilding(i)">
+                <i class="bgis-icon icon-plus"></i>
+              </button>
+              
+            </ion-item>
+          </ng-container>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10">
+        <ion-button expand="block" color="tertiary" (click)="navigateToMapSearch()" class="download-button">
+          <span>Search Area</span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center" *ngIf="isEditOrAddEquipment">
+      <ion-col size="10" *ngIf="false">
+        <ion-button expand="block" color="tertiary" (click)="navigateToMapSearch()" class="download-button">
+          <span>Search Area</span>
+        </ion-button>
+      </ion-col>
+      <!-- <input-con
+          [name]="'Debug Building ID'"
+          [title]="'Debug Building ID'"
+          [valuecon]="debugBuildingId"
+          [maxLen]="250"
+          (conclick)="conDebugClick($event)"
+        ></input-con> -->
+        <ion-col>
+          <input-con [name]="'inputModelNumber'" [title]="'Debug Building ID'" [hasIcon]="false" [hasplaceholder]="false" [maxLen]="50"
+          [valuecon]="debugBuildingId" 
+           (iconclick)="onChangeModuleNumberEvent($event)"></input-con>
+        </ion-col>
+        <ion-button expand="block" color="tertiary" (click)="refreshEquipments()" class="download-button">
+          <span>Search </span>
+        </ion-button>
+      
+    </ion-row>
+    <div *ngIf="false"  style="color: blue;">{{subs.isOffline}} </div>
+  </ion-grid>
+
+  
+</ion-content>
+

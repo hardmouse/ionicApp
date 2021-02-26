@@ -1,0 +1,239 @@
+<ion-header [translucent]="false" >
+  <ion-toolbar color="primary">
+    <app-header isFrom="step3"></app-header>
+  </ion-toolbar>
+</ion-header>
+<app-sub-header [subHeader]="subHeader" (navStep)="navBackToJump($event)"></app-sub-header>
+<p class="stepper-instruction">Please enter important dates, including start date, key date, procurement and warranty information.</p>
+<ion-content>
+  <ion-grid class="grid-top" id="vDates" (click)="closeDropdown()">
+    <ion-label class="label-section" [ngClass]="{'extra-top':showStartDateTip}">Maintenance Schedule</ion-label>
+    <ion-card>
+      <ion-row >
+        <ion-col >
+          <div class="form-input">
+            <ion-label class="has-tip">Start Date:
+              <i class="bgis-icon icon-info-1 label-info" (click)="showTip('StartDate')"></i>
+              <div *ngIf="showStartDateTip" class="tooltip-wrapper" (click)="showStartDateTip = false">If the maintenance responsibility is with BGIS, then the start date is the date from which the PM WO generation will be starting.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+            </ion-label>
+            <div class="input-wrapper">
+              <input required>
+              <ion-datetime  [(ngModel)]="step4Val.StartDate" displayFormat="YYYY-MM-DD"></ion-datetime> 
+              <button aria-label="search" class="input-icon-button clk-thru-icon">
+                <i class="infield bgis-icon icon-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col >
+          <div class="form-input">
+            <ion-label class="has-tip">Key Date:
+              <i class="bgis-icon icon-info-1 label-info" (click)="showTip('KeyDate')"></i>
+              <div *ngIf="showKeyDateTip" class="tooltip-wrapper" (click)="showKeyDateTip = false">The key date is the common date for the least frequency maintenance routine. (Ex. For a quarterly and an annual, it would be the date of the annual maintenance routine). All other maintenance dates will be calculated based on this date unless there is an offset.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+            </ion-label>
+            <div class="input-wrapper">
+              <input required>
+              <ion-datetime  displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.KeyDate"></ion-datetime> 
+              <button aria-label="search" class="input-icon-button clk-thru-icon">
+                <i class="infield bgis-icon icon-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    
+    <ion-label class="label-section">Warranty Information</ion-label>
+    <ion-card>
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputResponComment'" [title]="'Warranty Vendor Name'" [hasIcon]="false" [maxLen]="100" 
+          [valuecon]="step4Val.WarrantyVenderName" (iconclick)="getInputWarrentVenderName($event)">
+        </input-con>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col >
+          <div class="form-input">
+            <ion-label>Installation Date:</ion-label>
+            <div class="input-wrapper">
+              <input required> 
+              <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.InstallationDate"></ion-datetime> 
+              <button aria-label="search" class="input-icon-button clk-thru-icon">
+                <i class="infield bgis-icon icon-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col >
+          <div class="form-input">
+            <ion-label>Parts Warranty Date:</ion-label>
+            <div class="input-wrapper">
+              <input required>
+              <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.PartsWarrantyDate" min="{{minDate}}" max="2099-12-31"></ion-datetime> 
+              <button aria-label="search" class="input-icon-button clk-thru-icon">
+                <i class="infield bgis-icon icon-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col >
+          <div class="form-input">
+            <ion-label>Labour Warranty Date:</ion-label>
+            <div class="input-wrapper">
+              <input required>
+              <ion-datetime  displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.LabourWarrantyDate" min="{{minDate}}" max="2099-12-31"></ion-datetime> 
+              <button aria-label="search" class="input-icon-button clk-thru-icon">
+                <i class="infield bgis-icon icon-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row id="vM">
+        <ion-col>
+          <ion-label class="has-tip">Maintenance Responsibility:
+            <i class="bgis-icon icon-info-1 label-info" (click)="showTip('MR')"></i>
+            <div *ngIf="showMRTip" class="tooltip-wrapper" (click)="showMRTip = false">An indication flag if the Building Item is maintained by BGIS or not.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+          </ion-label>
+          <div class="button-group">
+            <div [ngClass]="{'hilite': step4Val.isMaintenanceResponsibility}" 
+              (click)="maintenanceResponsibility(0)">No</div>
+            <div [ngClass]="{'hilite': !step4Val.isMaintenanceResponsibility}" 
+              (click)="maintenanceResponsibility(1)">Yes</div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ng-container *ngIf="!step4Val.isMaintenanceResponsibility">
+        <ion-row>
+          <ion-col>
+            <input-con [name]="'inputRespon'" [title]="'PM Responsibility'" [hasIcon]="true" [isValid]="step4Val.isResponsibilityValueValid"
+            (iconclick)="getInputResponsibilityValue($event)" [valuecon]="step4Val.ResponsibilityValue" [errorMessage]="'Required'"
+              (conclick)="hideResponSearchs()"
+              [infoTip]="'If the maintenance responsibility is unchecked, then we need to select the PM responsibility from the drop-down list that has 3 options.'">
+            </input-con>
+            <div *ngIf="step4Val.showConResponsibilityList" class="dropdown-content">
+              <ng-container *ngFor="let u of listConResponsibilityFiltered; let i=index">
+                <div class="dropdown-item">
+                  <div class="dropdown-inner" innerHTML="{{ u.Value| highlighSearch : step4Val.ResponsibilityValue}}" 
+                  (mousedown)="selectResponItem(i)" > </div>
+                </div>
+              </ng-container>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <input-con [name]="'inputResponComment'" [title]="'PM Responsibility Comment'" [hasIcon]="false" [maxLen]="100" [errorMessage]="'Required'"
+            [isValid]="step4Val.isPMResponsibilityCommentValid"
+            [valuecon]="step4Val.PMResponsibilityComment"
+            (iconclick)="getInputPMComment($event)">
+          </input-con>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+    </ion-card>
+
+
+    <ion-label class="label-section">Purchase Information</ion-label>
+    <ion-card>
+      <ion-row >
+        <ion-col >
+          <div class="form-input">
+            <ion-label>Purchase Date:</ion-label>
+            <div class="input-wrapper">
+              <input required> 
+              <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.PurchaseDate"></ion-datetime> 
+              <button aria-label="search" class="input-icon-button clk-thru-icon">
+                <i class="infield bgis-icon icon-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row id="vM2">
+        <ion-col>
+          <input-con [name]="'inputPurPrice'" [title]="'Purchase Price (exclud.tax)($)'" 
+          [hasIcon]="false" [maxLen]="10" (iconclick)="getPurchasePriceValue($event)" 
+          [valuecon]="step4Val.PurchasePrice"
+          [isValid]="step4Val.isPurchasePriceValid" 
+          [errorMessage]="'Invalid Money number.'">
+        </input-con>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputOwnership'" [title]="'Ownership'" [hasIcon]="true" [valuecon]="step4Val.OwnershipValue" 
+          (iconclick)="getInputOwnershipValue($event)" (conclick)="hideOwnershipSearchs()">
+          </input-con>
+          <div *ngIf="step4Val.showOwnershipValue" class="dropdown-content">
+            <div *ngIf="showNoResultOwnerShip" style="color:#00467f" (click)="resetOwnerShipInput()">No results found </div>
+            <ng-container *ngFor="let u of listOwnershipFilter; let i=index">
+              <div class="dropdown-item">
+                <div class="dropdown-inner" innerHTML="{{ u.Value | highlighSearch : step4Val.OwnershipValue}}" 
+                (mousedown)="selectOwnershipItem(i)" > </div>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputAcquisitionStatus'" [title]="'Acquisition Status'" [hasIcon]="true" [valuecon]="step4Val.AcquisitionStatusValue" 
+          (iconclick)="getInputAcquisitionStatusValue($event)" (conclick)="hideAcquisitionStatusSearchs()"
+          [infoTip]="'Describes the state of the Building Item of whether it was on hand at the start of a contract or acquired during the contract.'">
+          </input-con>
+          <div *ngIf="step4Val.showAcquisitionStatusValue" class="dropdown-content">
+            <div *ngIf="showNoResultAcquisitionStatus" style="color:#00467f" (click)="resetAcquisitionStatusInput()">No results found </div>
+            <ng-container *ngFor="let u of listAcquisitionStatusFilter; let i=index">
+              <div class="dropdown-item">
+                <div class="dropdown-inner" innerHTML="{{ u.Value | highlighSearch : step4Val.AcquisitionStatusValue}}" 
+                (mousedown)="selectAcquisitionStatus(i)" > </div>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <input-con [name]="'inputDispositionStatus'" [title]="'Disposition Status'" [hasIcon]="true" [valuecon]="step4Val.DispositionStatus" 
+          (iconclick)="getInputDispositionStatusValue($event)" (conclick)="hideDispositionStatusSearchs()"
+          [infoTip]="'A code value that indicates the method or reason for disposal during the Contract.'">
+          </input-con>
+          <div *ngIf="step4Val.showDispositionStatus" class="dropdown-content last">
+            <div *ngIf="showNoResultDispositionStatus" style="color:#00467f" (click)="resetDispositionStatusInput()">No results found </div>
+            <ng-container *ngFor="let u of listDispositionStatusFilter; let i=index">
+              <div class="dropdown-item">
+                <div class="dropdown-inner" innerHTML="{{ u.Value | highlighSearch : step4Val.DispositionStatus}}" 
+                (mousedown)="selectDispositionStatus(i)" > </div>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+    
+  <ion-row>
+    <ion-col *ngIf="!subs.isJumpStep">
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="navigateToStep3Description()">Back</ion-button>
+        <ion-button color="primary" (click)="navigateToStep5Summary()">Next</ion-button>
+      </div>
+    </ion-col>
+    <ion-col *ngIf="subs.isJumpStep">
+      <div class="botton-container">
+        <ion-button color="tertiary" (click)="navigateJumpStep5(false)">Discard Changes</ion-button>
+        <ion-button color="primary" (click)="navigateJumpStep5(true)">Save Changes</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

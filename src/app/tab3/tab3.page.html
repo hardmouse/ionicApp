@@ -1,0 +1,57 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <app-header></app-header>
+  </ion-toolbar>
+</ion-header>
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar *ngIf="!showBuildings && mapsAvailable" color="transparent" class="sub-header">
+    <ion-searchbar debounce="500" (ionChange)="searchLocation($event)" [(ngModel)]="location">
+    </ion-searchbar>
+    <ion-item *ngIf="resultsAvailable">
+      <ion-list style="width: 100%; max-height: 200px; overflow-y: scroll;">
+        <ion-item *ngFor="let location of locations" (click)="locationSelected(location)" button>
+          <ion-label>{{location?.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <p class="ptext">{{ 'ClickMap' | apptranslate: 'MAPS' | async }}</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!showBuildings">
+  <div *ngIf="mapsAvailable" #map id="map" class="map-container"></div>
+</ion-content>
+<ion-content [fullscreen]="false" *ngIf="showBuildings" color="transparent">
+  <ion-row>
+    <ion-col style="margin:10px 0 20px 0;">
+      <ion-label>{{ 'BuildingsFound' | apptranslate: 'MAPS' | async }}
+      </ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col style="border:0px red solid;">
+      <ion-card style="min-height: 90px;">
+        <ng-container *ngFor="let building of areaBuildinglist; let i = index">
+          <ion-item lines="full" style="padding-left: 0px;">
+            <ion-label style="font-size: 15px;">
+              <h2> {{building.BuildingDesc}}</h2>
+              <p>{{building.Address}}</p>
+            </ion-label>
+            <button style="background-color:white;"
+              (click)="downloadBuildingData(building.BuildingId, building.ClientId)">
+              <i class="bgis-icon icon-plus"></i>
+            </button>
+
+          </ion-item>
+        </ng-container>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" color="secondary" (click)="selectMoreBuildings()">{{ 'SelectMoreBuildings' |
+        apptranslate: 'Buildings' | async }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

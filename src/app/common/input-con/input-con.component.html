@@ -1,0 +1,21 @@
+
+<div class="form-input">
+  <ion-label *ngIf="!hideTitle" [color]="checkClass()" [ngClass]="{'has-tip' : infoTip}">{{title}}<span *ngIf="isManadtory" class="mandatory">*</span>:
+    <i class="bgis-icon icon-info-1 label-info" *ngIf="infoTip" (click)="infoTipShowing()"></i>
+    <div *ngIf="infoTipShow && infoTip" class="tooltip-wrapper" (click)="infoTipShow = false">
+      {{infoTip}}<i class="bgis-icon icon-down-dir arrow-pos"></i>
+    </div>
+  </ion-label> 
+  <div class="input-wrapper">
+    <input required [(ngModel)]="valuecon" (keyup)="checkKeyUp($event)" (click)="columnClick()" maxlength="{{maxLen}}"
+    [ngClass]="{'warning-bottom':!isValid, 'padding-left':isSearch}" type="{{type}}">
+    <span *ngIf="hasplaceholder" class="placeholder">Search</span>
+    <button aria-label="search" class="input-icon-button on-left" (click)="onClick($event);$event.stopPropagation()" *ngIf="isSearch">
+      <i class="infield bgis-icon icon-search-1"></i>
+    </button>
+    <button aria-label="search" class="input-icon-button" (click)="onClick($event);$event.stopPropagation()" *ngIf="hasIcon">
+      <i class="infield bgis-icon icon-down-open-mini" [ngStyle]="{'color': !isValid ? '#af1685': ''}"></i>
+    </button>
+  </div>
+  <ion-text *ngIf="!isValid" color="danger"><i class="bgis-icon icon-warning-round"></i> {{errorMessage}}</ion-text>
+</div>

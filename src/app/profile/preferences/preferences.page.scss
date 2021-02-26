@@ -1,0 +1,27 @@
+ion-grid{
+    padding-top: 0;
+}
+ion-card{
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+p{
+    font-family: 'Lato-Light';
+    margin: 0;
+    &.desc{
+        padding-bottom: 0.25rem;
+    }
+    &.line-2{
+        font-family: 'Lato';
+        font-weight: bold;
+        padding-bottom: 0.5rem;
+        padding-left: 0.5rem;
+    }
+}
+.toggleButton{
+    margin-top: 0.25rem;
+}
+.framed{
+    padding: 0.5rem;
+    border: 1px solid #999;
+}

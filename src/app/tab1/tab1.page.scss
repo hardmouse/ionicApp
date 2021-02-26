@@ -1,0 +1,53 @@
+.client-checkbox{
+    --border-radius: 0;
+}
+.download-button{
+    height: 4rem;
+    span{
+        line-height: 1.5rem;
+    }
+}
+.dropdown-item {
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+    .dropdown-inner.equip{
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #777;
+        width: 100%;
+        position: relative;
+        .inner-item{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            span:nth-child(1){
+                width: 35%;
+            }
+            span:nth-child(2){
+                width: 65%;
+            }
+            margin-right:2rem;
+        }
+        .corner{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.5rem 0.3rem 0.5rem 0.7rem;
+            background-color: rgba(255,255,255,0.8);
+        }
+    }
+}
+.add-new-equip-wrapper{
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ccc;
+}
+ion-card{
+    margin: 0 auto 
+}
+
+.has-selected{
+    font-size: 16px;
+    color: #af1685 ;
+    font-weight: bold;
+}

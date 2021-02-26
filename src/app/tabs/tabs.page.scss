@@ -1,0 +1,28 @@
+
+ion-tab-bar {
+  // height: 2.75rem;
+  --ion-color-base: #002a4c !important; //Note for MW
+  height: 44px !important;
+
+  ion-tab-button {
+    ion-label{
+      color:white;
+      font-size: 0.5rem;
+      margin-bottom: 0;
+      //padding-bottom: 0.5rem;
+      line-height: 1rem;
+    }
+    ion-icon.tab{
+      color:white;
+    }
+    .bgis-icon{
+      //padding-top: 0.5rem;
+    }
+
+    &#tab-button-equipmentaddtab {
+      ion-label, ion-icon{
+        color: #73eff6;
+      }
+    }
+  }
+}

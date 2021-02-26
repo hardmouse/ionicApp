@@ -1,0 +1,21 @@
+.field-row{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    .input-field{
+        width: 80%;
+    }
+    .input-icon{
+        padding: 0 1rem;
+    }
+}
+
+.read-only{
+    padding-left: 0px;font-size: 1.1rem;
+}
+
+.warning-bottom{
+    border: 2px solid #af1685 !important;
+    top: 0;
+    height: 2.5rem;
+}
