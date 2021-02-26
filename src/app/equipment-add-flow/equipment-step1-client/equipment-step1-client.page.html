@@ -49,8 +49,8 @@
       <ion-row>
         <ion-col>
           <ion-label class="has-tip">Criticality<span class="mandatory">*</span>:
-            <i class="bgis-icon icon-info-1 label-info" (click)="showTipCriticality()"></i>
-            <div *ngIf="showCriticalityTip && subs.publicTipShow" class="tooltip-wrapper" (click)="showCriticalityTip = false">Specifies whether the Building Item is critical or is a part of a Critical System. Determined by the Critical Environments program.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+            <i class="test-icon icon-info-1 label-info" (click)="showTipCriticality()"></i>
+            <div *ngIf="showCriticalityTip && subs.publicTipShow" class="tooltip-wrapper" (click)="showCriticalityTip = false">Specifies whether the Building Item is critical or is a part of a Critical System. Determined by the Critical Environments program.<i class="test-icon icon-down-dir arrow-pos"></i></div>
         </ion-label>
           <ion-list class="info-wrapper" [ngStyle]="{'border': !step1Val.isCriticalityValid ? '1px #af1685 solid': ''}" (click)="step1Val.isCriticalityValid = true;">
             <div *ngFor="let cr of Criticality; let i = index">
@@ -63,7 +63,7 @@
               </ion-radio-group> 
             </div>
           </ion-list>
-          <ion-text *ngIf="!step1Val.isCriticalityValid" color="danger"><i class="bgis-icon icon-warning-round"></i> Please enter a valid value</ion-text>
+          <ion-text *ngIf="!step1Val.isCriticalityValid" color="danger"><i class="test-icon icon-warning-round"></i> Please enter a valid value</ion-text>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="true">

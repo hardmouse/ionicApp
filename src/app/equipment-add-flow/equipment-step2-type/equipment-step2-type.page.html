@@ -153,8 +153,8 @@
           <div class="form-input">
             <ion-label class="has-tip">
               Field Item Number:
-              <!-- <i class="bgis-icon icon-info-1 label-info" (click)="showTipFieldItem()"></i>
-              <div *ngIf="showFieldItemTip && subs.publicTipShow" class="tooltip-wrapper" (click)="showFieldItemTip = false">Barcode can be scaned from the label on equipment.<i class="bgis-icon icon-down-dir arrow-pos"></i></div> -->
+              <!-- <i class="test-icon icon-info-1 label-info" (click)="showTipFieldItem()"></i>
+              <div *ngIf="showFieldItemTip && subs.publicTipShow" class="tooltip-wrapper" (click)="showFieldItemTip = false">Barcode can be scaned from the label on equipment.<i class="test-icon icon-down-dir arrow-pos"></i></div> -->
             </ion-label>
             <div class="input-wrapper">
               <input required [(ngModel)]="step2Val.FieldItemNumber" fieldItemNumberMask [ngClass]="{'warning-bottom':!step2Val.isFieldItemNumberValid}">
@@ -163,13 +163,13 @@
         </div>
 
         <div class="input-icon camera" (click)="scanBarCode()">
-          <!--ion-icon class="circle bgis-icon icon-camera-1"></ion-icon-->
+          <!--ion-icon class="circle test-icon icon-camera-1"></ion-icon-->
         </div>  
       </ion-col>
     </ion-row>
     <ion-row >
       <ion-col class="field-row">
-          <ion-text *ngIf="!step2Val.isFieldItemNumberValid" color="danger"><i class="bgis-icon icon-warning-round"></i>Please input 9 digital number.</ion-text>
+          <ion-text *ngIf="!step2Val.isFieldItemNumberValid" color="danger"><i class="test-icon icon-warning-round"></i>Please input 9 digital number.</ion-text>
       </ion-col>
     </ion-row>
     
@@ -217,7 +217,7 @@
               <input required> 
               <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step2Val.ManufacturerDate"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>

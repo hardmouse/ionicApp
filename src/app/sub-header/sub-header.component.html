@@ -17,7 +17,7 @@
            
             <span class="stepper-info">
                 <span *ngIf="subs.isOffline" style="color:#ff9966;margin-right: 1rem;">OFFLINE</span>
-                <i class="bgis-icon icon-info-1 label-info"></i>
+                <i class="test-icon icon-info-1 label-info"></i>
             </span>
         </div>
 
@@ -32,7 +32,7 @@
                             </div>
                             <div class="dash"></div>
                             <div class="progress-dot" [ngClass]="{'current' : item.isCurrentStep, 'finished' : item.isFinished}">
-                                <i *ngIf="item.isFinished" class="bgis-icon icon-check"></i>
+                                <i *ngIf="item.isFinished" class="test-icon icon-check"></i>
                             </div>
                         </div>
                     </div>

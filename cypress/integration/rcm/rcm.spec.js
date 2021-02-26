@@ -30,10 +30,10 @@ context('INIT', () => {
     cy.get(':nth-child(1) > .dropdown-inner')
     .click()
     .wait(1000);
-    cy.get('.stepper-info > .bgis-icon')
+    cy.get('.stepper-info > .test-icon')
     .click()
     .wait(1000);
-    cy.get('.stepper-info > .bgis-icon')
+    cy.get('.stepper-info > .test-icon')
     .click()
     .wait(1000);
   })
@@ -83,7 +83,7 @@ context('INIT', () => {
       cy.get(':nth-child(1) > .dropdown-inner')
       .click()
 
-      cy.get('app-header > :nth-child(1) > .bgis-icon')
+      cy.get('app-header > :nth-child(1) > .test-icon')
       .click()
       cy.get('.alert-wrapper .button-2 span.alert-button-inner')
       .should('contain.text', 'Continue')

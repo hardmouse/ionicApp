@@ -13,14 +13,14 @@
         <ion-col >
           <div class="form-input">
             <ion-label class="has-tip">Start Date:
-              <i class="bgis-icon icon-info-1 label-info" (click)="showTip('StartDate')"></i>
-              <div *ngIf="showStartDateTip" class="tooltip-wrapper" (click)="showStartDateTip = false">If the maintenance responsibility is with BGIS, then the start date is the date from which the PM WO generation will be starting.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+              <i class="test-icon icon-info-1 label-info" (click)="showTip('StartDate')"></i>
+              <div *ngIf="showStartDateTip" class="tooltip-wrapper" (click)="showStartDateTip = false">If the maintenance responsibility is with BGIS, then the start date is the date from which the PM WO generation will be starting.<i class="test-icon icon-down-dir arrow-pos"></i></div>
             </ion-label>
             <div class="input-wrapper">
               <input required>
               <ion-datetime  [(ngModel)]="step4Val.StartDate" displayFormat="YYYY-MM-DD"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>
@@ -30,14 +30,14 @@
         <ion-col >
           <div class="form-input">
             <ion-label class="has-tip">Key Date:
-              <i class="bgis-icon icon-info-1 label-info" (click)="showTip('KeyDate')"></i>
-              <div *ngIf="showKeyDateTip" class="tooltip-wrapper" (click)="showKeyDateTip = false">The key date is the common date for the least frequency maintenance routine. (Ex. For a quarterly and an annual, it would be the date of the annual maintenance routine). All other maintenance dates will be calculated based on this date unless there is an offset.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+              <i class="test-icon icon-info-1 label-info" (click)="showTip('KeyDate')"></i>
+              <div *ngIf="showKeyDateTip" class="tooltip-wrapper" (click)="showKeyDateTip = false">The key date is the common date for the least frequency maintenance routine. (Ex. For a quarterly and an annual, it would be the date of the annual maintenance routine). All other maintenance dates will be calculated based on this date unless there is an offset.<i class="test-icon icon-down-dir arrow-pos"></i></div>
             </ion-label>
             <div class="input-wrapper">
               <input required>
               <ion-datetime  displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.KeyDate"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>
@@ -62,7 +62,7 @@
               <input required> 
               <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.InstallationDate"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>
@@ -76,7 +76,7 @@
               <input required>
               <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.PartsWarrantyDate" min="{{minDate}}" max="2099-12-31"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>
@@ -90,7 +90,7 @@
               <input required>
               <ion-datetime  displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.LabourWarrantyDate" min="{{minDate}}" max="2099-12-31"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>
@@ -99,8 +99,8 @@
       <ion-row id="vM">
         <ion-col>
           <ion-label class="has-tip">Maintenance Responsibility:
-            <i class="bgis-icon icon-info-1 label-info" (click)="showTip('MR')"></i>
-            <div *ngIf="showMRTip" class="tooltip-wrapper" (click)="showMRTip = false">An indication flag if the Building Item is maintained by BGIS or not.<i class="bgis-icon icon-down-dir arrow-pos"></i></div>
+            <i class="test-icon icon-info-1 label-info" (click)="showTip('MR')"></i>
+            <div *ngIf="showMRTip" class="tooltip-wrapper" (click)="showMRTip = false">An indication flag if the Building Item is maintained by BGIS or not.<i class="test-icon icon-down-dir arrow-pos"></i></div>
           </ion-label>
           <div class="button-group">
             <div [ngClass]="{'hilite': step4Val.isMaintenanceResponsibility}" 
@@ -151,7 +151,7 @@
               <input required> 
               <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="step4Val.PurchaseDate"></ion-datetime> 
               <button aria-label="search" class="input-icon-button clk-thru-icon">
-                <i class="infield bgis-icon icon-calendar"></i>
+                <i class="infield test-icon icon-calendar"></i>
               </button>
             </div>
           </div>

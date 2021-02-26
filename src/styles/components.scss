@@ -287,7 +287,7 @@ body{
             background-color: #FFF;
             border-radius: 50%;
         }
-        .bgis-icon{
+        .test-icon{
             color: #FFF;
             padding: 0 0.5rem;
             line-height: 1.5rem;
@@ -316,7 +316,7 @@ body{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        .bgis-icon{
+        .test-icon{
             color: $primary-color;
             font-size: 3rem;
             height: 2rem;
@@ -409,7 +409,7 @@ body{
             border-radius: 50%;
             z-index: 1;
             position: relative;
-            .bgis-icon{
+            .test-icon{
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -512,7 +512,7 @@ body{
         }
     }
     ion-icon{
-        &.circle.bgis-icon{
+        &.circle.test-icon{
             //background-color: $primary-color;
             width: 2.75rem;
             height: 2.75rem;
@@ -844,7 +844,7 @@ body{
         
         ion-icon{
             padding: 0;
-            &.circle.bgis-icon{
+            &.circle.test-icon{
                 background: transparent;
                 width: 1.25rem;
                 height: 1.25rem;
@@ -953,7 +953,7 @@ body.dark{
             border: 1px solid #333;
             background-color: #F2F2F2;
 
-            .bgis-icon{
+            .test-icon{
                 color: #000;
             }
             &.current {

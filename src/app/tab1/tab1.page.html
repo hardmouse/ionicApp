@@ -89,7 +89,7 @@
                   <span>Model #</span>
                   <span innerHTML="{{ sl.ModelNumber | highlighSearch : equipSearchValue}}"></span>
                 </div>
-                <ion-icon class="corner bgis-icon icon-edit-pen"></ion-icon>
+                <ion-icon class="corner test-icon icon-edit-pen"></ion-icon>
               </div>
             </div>
           </ng-container>
@@ -125,7 +125,7 @@
             <ion-item lines="full" style="padding-left: 0px;" (click)="selectSearchBuilding(i)">
               <ion-label style="font-size: 15px;"   (click)="switchBuilding(i)">{{building.BuildingDesc}}</ion-label>
               <button *ngIf="subs.Tabs=='ADD'" mat-button matSuffix mat-icon-button aria-label="add" style="background-color:white;" (click)="selectSearchBuilding(i)">
-                <i class="bgis-icon icon-plus"></i>
+                <i class="test-icon icon-plus"></i>
               </button>
               
             </ion-item>

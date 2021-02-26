@@ -24,8 +24,7 @@
               <div (click)="showRejected = !showRejected; toggleState();" [ngClass]="{'hilite':showRejected}">Rejected</div>
               <div (click)="showPending = !showPending; toggleState();" [ngClass]="{'hilite':showPending}">Pending</div>
             </div>
-            <ion-searchbar (ionChange)='onChangeTime($event.target.value)' class="com-searchbar" [(ngModel)]="searchRequestsValue"></ion-searchbar>
-            <!-- <ion-button class="com-button"><i class="bgis-icon icon-database"></i></ion-button> -->
+            <ion-searchbar (ionChange)='onChangeTime($event.target.value)' class="com-searchbar" [(ngModel)]="searchRequestsValue"></ion-searchbar>\
           </ion-toolbar>
           <ion-list>
             <ion-item-sliding *ngFor="let item of searchRequestsListFilter; let i = index">
