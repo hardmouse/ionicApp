@@ -39,9 +39,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 
-// export function translateLoaderFactory(http: HttpClient) {
-//   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-// }
+export function translateLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 // avoid hardcoded URLs, this factory will retrieve them from the configuration class
 export function authConfigFactory(): OAuthModuleConfig {
   return {
@@ -70,13 +70,13 @@ export function authConfigFactory(): OAuthModuleConfig {
     ReactiveFormsModule,
     OAuthModule.forRoot(),
     IonicStorageModule.forRoot(),
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: (translateLoaderFactory),
-    //     deps: [HttpClient]
-    //   }
-    // })
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (translateLoaderFactory),
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     StatusBar,

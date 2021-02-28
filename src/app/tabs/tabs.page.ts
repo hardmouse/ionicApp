@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-// import { TranslateConfigService } from '../common/service/translate-config.service';
+import { TranslateConfigService } from '../common/service/translate-config.service';
 import { OfflineManagerService } from '../middleware/offline-manager.service';
 import { SubscribableService } from '../services/subscribable.service';
 
@@ -14,7 +14,7 @@ export class TabsPage implements OnInit {
   constructor(
     public subs: SubscribableService,
     private cd: ChangeDetectorRef,
-    // private translateConfigService: TranslateConfigService,
+    private translateConfigService: TranslateConfigService,
     private offlineManager: OfflineManagerService
   ) {
   }
@@ -30,9 +30,9 @@ export class TabsPage implements OnInit {
     document.body.classList.toggle('dark', this.toggleCtrl);
   }
   ionViewWillEnter() {
-    // console.log("getCurrentLanguage in service config:", this.translateConfigService.getCurrentLanguage());
-    // this.translateConfigService.setLanguage(this.translateConfigService.getCurrentLanguage());
-    // this.cd.detectChanges();
+    console.log("getCurrentLanguage in service config:", this.translateConfigService.getCurrentLanguage());
+    this.translateConfigService.setLanguage(this.translateConfigService.getCurrentLanguage());
+    this.cd.detectChanges();
   }
   // tg() {
   //   this.langToggle = !this.langToggle;

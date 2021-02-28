@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { combineLatest, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { OfflineManagerService } from 'src/app/middleware/offline-manager.service';
+// import { OfflineManagerService } from 'src/app/middleware/offline-manager.service';
 import { APISqlite, buildingAPIS, clientAPIS } from 'src/app/middleware/utility/offlinedataurls';
 import { UrlConfig } from 'src/app/modules/core/classes/config';
 import { BuildingRecord } from '../type/common.model';
@@ -15,7 +15,9 @@ const baseUrl = UrlConfig.baseUrlRealCondition_Original + 'api/offline/';
 })
 export class BuildingService extends DataAccessService {
 
-    constructor(http: HttpClient, private offlineManager: OfflineManagerService, private languageService: LanguageService) {
+    constructor(http: HttpClient, 
+        // private offlineManager: OfflineManagerService, 
+        private languageService: LanguageService) {
         super(http);
     }
 
@@ -45,11 +47,11 @@ export class BuildingService extends DataAccessService {
 
     private async nobuildingsfound() {
         const message = await this.languageService.translate('Buildings', 'BUILDINGSNOTFOUND');
-        this.offlineManager.presentToastWithButton(message);
+        // this.offlineManager.presentToastWithButton(message);
     }
 
     async downloadData(buildingId: string, clientId: number) {
-        this.offlineManager.downloadStart();
+        // this.offlineManager.downloadStart();
         let body = { 'PageNumber': 1, 'DataHash': [], 'BuildingId': buildingId, 'ClientId': clientId };
         for (let item of buildingAPIS) {
             const args: APISqlite = {
@@ -75,7 +77,7 @@ export class BuildingService extends DataAccessService {
                 await this.handleRequests(args);
             }
         }
-        await this.offlineManager.downloadComplete();
+        // await this.offlineManager.downloadComplete();
     }
 
     private async handleRequests(item: APISqlite) {
@@ -83,7 +85,7 @@ export class BuildingService extends DataAccessService {
             try {
                 await this.handleGet(item);
             } catch (err) {
-                await this.offlineManager.downloadFail();
+                // await this.offlineManager.downloadFail();
                 throw err;
             }
         }
@@ -91,7 +93,7 @@ export class BuildingService extends DataAccessService {
             try {
                 await this.handlePost(item);
             } catch (err) {
-                await this.offlineManager.downloadFail();
+                // await this.offlineManager.downloadFail();
                 throw err;
             }
         }
@@ -140,7 +142,7 @@ export class BuildingService extends DataAccessService {
             }
             params += ')';
         }
-        return this.offlineManager.executeQuery('Insert or Replace into ' + args.table + ' (' + args.columns.join(',') + ') Values ' + params + args.upsert, values);
+        // return this.offlineManager.executeQuery('Insert or Replace into ' + args.table + ' (' + args.columns.join(',') + ') Values ' + params + args.upsert, values);
     }
 
     getLocation(query: string) {

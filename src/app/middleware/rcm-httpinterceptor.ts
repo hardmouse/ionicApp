@@ -15,7 +15,7 @@ const CACHE_TIMEOUT = 60 * 60000;
 })
 export class RCMHttpInterceptor implements HttpInterceptor {
     constructor(private networkService: NetworkService,
-        private offlineManager: OfflineManagerService,
+        // private offlineManager: OfflineManagerService,
         private queryService: OfflineQueryService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -24,7 +24,7 @@ export class RCMHttpInterceptor implements HttpInterceptor {
 
         if (req.method !== 'GET' && req.method != 'OPTIONS') {
             if (!isOnline) {
-                this.offlineManager.saveRequest(req.method, req.url, req.body);
+                // this.offlineManager.saveRequest(req.method, req.url, req.body);
                 return of(new HttpResponse({ body: { ConnectionStatus: ConnectionStatus.Offline } }));
             }
             else return next.handle(req).pipe(catchError(response => this.handleError(response, req)));
@@ -79,7 +79,7 @@ export class RCMHttpInterceptor implements HttpInterceptor {
             errorMsg = JSON.stringify({ 'Status': response.status, 'StatusText': response.statusText, 'Error': response.message });
         }
         console.log("RCMERROR: " + errorMsg);
-        this.offlineManager.LOG(req.url, req.method, errorMsg, req.method === 'POST' ? JSON.stringify(req.body) : '');
+        // this.offlineManager.LOG(req.url, req.method, errorMsg, req.method === 'POST' ? JSON.stringify(req.body) : '');
         throw response;
         return throwError(errorMsg);
     }

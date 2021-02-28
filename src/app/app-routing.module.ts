@@ -6,27 +6,28 @@ import { PickAreaLocationComponent } from './pick-area-location/pick-area-locati
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthorizationGuard],
+    // canActivate: [AuthorizationGuard],
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'tab1',
-    canActivate: [AuthorizationGuard],
+    // canActivate: [AuthorizationGuard],
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   { path:'pa',component:PickAreaLocationComponent},
   {
     path: 'equipment-add-flow',
-    canActivate: [AuthorizationGuard],
+    // canActivate: [AuthorizationGuard],
     loadChildren: () => import('./equipment-add-flow/equipment-add-flow.module').then( m => m.EquipmentAddFlowPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./modules/security/pages/login/login.module').then( m => m.LoginPageModule)
+    // loadChildren: () => import('./modules/security/pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'search',
-    canActivate: [AuthorizationGuard],
+    // canActivate: [AuthorizationGuard],
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   }
  

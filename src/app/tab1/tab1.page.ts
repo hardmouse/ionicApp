@@ -12,6 +12,7 @@ import { SubscribableService } from '../services/subscribable.service';
 import { ClientForSelectResponseModel, UserInfoResponseModel } from '../modules/security/classes/authModels';
 import { ConnectionStatus, NetworkService } from '../middleware/network.service';
 import { OfflineQueryService } from '../common/service/offline-query.service';
+import { TranslateConfigService } from '../common/service/translate-config.service';
 
 @Component({
   selector: 'app-tab1',
@@ -20,11 +21,12 @@ import { OfflineQueryService } from '../common/service/offline-query.service';
 })
 export class Tab1Page implements OnInit{
   constructor(
-    public navCtrl:NavController,
+    private translateConfigService: TranslateConfigService,
+    private storage: Storage,
     private mobile:MobileService,
     private loginService: LoginService,
+    public navCtrl:NavController,
     public subs:SubscribableService,
-    private storage: Storage,
     public offlineQuery : OfflineQueryService,
     public networkService: NetworkService
     ) {
@@ -377,5 +379,9 @@ export class Tab1Page implements OnInit{
 
     this.areaBuildinglist.push(b2);
     this.getSearchEquipments();
+  }
+  setLang(_v){
+    console.log(_v);
+    this.translateConfigService.setLanguage(_v);
   }
 }
