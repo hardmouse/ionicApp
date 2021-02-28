@@ -13,7 +13,7 @@ import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 import { LoginPage } from './modules/security/pages/login/login.page';
 import { NetworkService } from './middleware/network.service';
 import { OfflineManagerService } from './middleware/offline-manager.service';
-// import { TranslateConfigService } from './common/service/translate-config.service';
+import { TranslateConfigService } from './common/service/translate-config.service';
 import { ClientForSelectResponseModel, UserInfoResponseModel } from '../app/modules/security/classes/authModels';
 import { SubscribableService } from '../app/services/subscribable.service';
 import { Storage } from '@ionic/storage';
@@ -39,8 +39,8 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
     private platformTypeService: PlatformTypeService,
     private deeplinks: Deeplinks,
     private networkService: NetworkService,
-    private offlineService: OfflineManagerService,
-    // private translateConfigService: TranslateConfigService,
+    // private offlineService: OfflineManagerService,
+    private translateConfigService: TranslateConfigService,
     public subs:SubscribableService,
     private storage: Storage,
     private ngZone: NgZone,
@@ -58,6 +58,8 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
 
     console.log(`initializeApp()`);
     this.platform.ready().then(() => {
+      console.log("platform.ready()");
+      this.langSetCheck();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.getVersion();
@@ -70,7 +72,6 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
         console.log(`initializeApp() isHybrid`);
         this.registerDeepLinksListners();
       }
-      // this.langSetCheck();
       this.contrastModeCheck();
     });
     this.platform.backButton.subscribeWithPriority(10, () => {
@@ -88,6 +89,7 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
       console.log(this.subs.version);
     })
     .catch((error) => {
+      this.subs.version = `Desktop 1.0. Build: 0.1`;
       console.log(`getVersion() could not read app version. error=${JSON.stringify(error)}`);
     });
 
@@ -121,7 +123,7 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
     if (this.loginService.isAuthorized)
      {
       this.loginService.storeAuthInfo();
-      this.offlineService.Initialize();
+      // this.offlineService.Initialize();
       destinationPage = Constants.FIRST_PAGE_AFTER_LOGIN_PATH;
     }
     console.log(
@@ -235,15 +237,16 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
     }
     document.body.classList.toggle('dark',toggleCtrl);
   }
-  // langSetCheck(){
-  //   if(!localStorage.getItem('langSet')){
-  //     localStorage.setItem('langSet', navigator.language);
-  //     this.translateConfigService.setLanguage(navigator.language);
-  //   }else{
-  //     this.translateConfigService.setLanguage(localStorage.getItem('langSet'));
-  //   }
-  //   // console.log(this.translateConfigService.getCurrentLanguage(),"<service ::: local>",localStorage.getItem('langSet'));
-  // }
+  langSetCheck(){
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    if(!localStorage.getItem('langSet')){
+      localStorage.setItem('langSet', navigator.language);
+      this.translateConfigService.setLanguage(navigator.language);
+    }else{
+      this.translateConfigService.setLanguage(localStorage.getItem('langSet'));
+    }
+    // console.log(this.translateConfigService.getCurrentLanguage(),"<service ::: local>",localStorage.getItem('langSet'));
+  }
 
   getUserInfo(){
     this.loginService.retrieveUserInfo().subscribe((user:UserInfoResponseModel)=>{

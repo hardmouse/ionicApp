@@ -19,7 +19,7 @@ export class Tab3Page {
   @ViewChild('map', { static: false }) gmap: ElementRef;
   @ViewChild('input', { static: false }) input: ElementRef;
   constructor(private service: BuildingService,
-    private offlineManager: OfflineManagerService,
+    // private offlineManager: OfflineManagerService,
     public subs: SubscribableService,
     private languageService: LanguageService, private spinnerDialog: SpinnerDialog) {
 
@@ -111,7 +111,7 @@ export class Tab3Page {
 
   private async mapsUnavailable() {
     const message = await this.languageService.translate('MAPS', 'MapsUnavailable');
-    this.offlineManager.presentToastWithButton(message);
+    // this.offlineManager.presentToastWithButton(message);
     this.mapsAvailable = false;
 
     Geolocation.getCurrentPosition().then(pos => {
@@ -120,7 +120,7 @@ export class Tab3Page {
     }).catch(async () => {
       this.showBuildings = true;
       const message = await this.languageService.translate('Buildings', 'LocationNotavailable')
-      this.offlineManager.presentToastWithButton(message);
+      // this.offlineManager.presentToastWithButton(message);
     });
   }
 
@@ -227,22 +227,22 @@ export class Tab3Page {
   }
 
   async downloadBuildingData(buildingId: string, clientId: number) {
-    this.offlineManager.executeQuery('Select * from Buildings where BuildingId = ?', [buildingId]).then(async (data) => {
-      if (data.rows.length === 0) {
-        const checkIfClientExist = await this.offlineManager.executeQuery('Select Count(*) as Total from Buildings where ClientId = ?', [clientId]).then(data => {
-          if (data.rows.length > 0) {
-            const item = data.rows.item(0).Total;
-            return item > 0;
-          } else return false;
-        });
+    // this.offlineManager.executeQuery('Select * from Buildings where BuildingId = ?', [buildingId]).then(async (data) => {
+    //   if (data.rows.length === 0) {
+    //     const checkIfClientExist = await this.offlineManager.executeQuery('Select Count(*) as Total from Buildings where ClientId = ?', [clientId]).then(data => {
+    //       if (data.rows.length > 0) {
+    //         const item = data.rows.item(0).Total;
+    //         return item > 0;
+    //       } else return false;
+    //     });
 
-        this.service.downloadData(buildingId, checkIfClientExist ? -1 : clientId);
-      }
-      else {
-        const message = await this.languageService.translate('Buildings', 'BuildingDataAlreadyExist');
-        this.offlineManager.presentToastWithButton(message);
-      }
-    })
+    //     this.service.downloadData(buildingId, checkIfClientExist ? -1 : clientId);
+    //   }
+    //   else {
+    //     const message = await this.languageService.translate('Buildings', 'BuildingDataAlreadyExist');
+    //     // this.offlineManager.presentToastWithButton(message);
+    //   }
+    // })
   }
 
   areaBuildinglist: BuildingRecord[] = [];

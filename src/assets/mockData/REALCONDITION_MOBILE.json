@@ -1,0 +1,94 @@
+[
+    {
+        "TranslationKey": "en-CA.Alert.DuplicateModelInfo.-1",
+        "TranslationValue": "Duplicate model information"
+    },
+    {
+        "TranslationKey": "en-CA.Alert.DuplicateSerialNumber.-1",
+        "TranslationValue": "Duplicate serial number"
+    },
+    {
+        "TranslationKey": "en-CA.DOWNLOAD.STARTED.-1",
+        "TranslationValue": "Downloading data."
+    },
+    {
+        "TranslationKey": "en-CA.DOWNLOAD.COMPLETED.-1",
+        "TranslationValue": "Download completed."
+    },
+    {
+        "TranslationKey": "en-CA.DOWNLOAD.FAIL.-1",
+        "TranslationValue": "Download falied."
+    },
+    {
+        "TranslationKey": "en-CA.MENU.DOWNLOADDATA.-1",
+        "TranslationValue": "Download Data"
+    },
+    {
+        "TranslationKey": "en-CA.MENU.FindEquipment.-1",
+        "TranslationValue": "Find Equipment"
+    },
+    {
+        "TranslationKey": "en-CA.MENU.FindBuilding.-1",
+        "TranslationValue": "Find Building"
+    },
+    {
+        "TranslationKey": "en-CA.MENU.MyRequests.-1",
+        "TranslationValue": "My Requests"
+    },
+    {
+        "TranslationKey": "en-CA.MENU.AddEquipment.-1",
+        "TranslationValue": "Add Equipment"
+    },
+    {
+        "TranslationKey": "en-CA.PROMPT.OkButton.-1",
+        "TranslationValue": "Done"
+    },
+    {
+        "TranslationKey": "en-CA.PROMPT.QUEUESYNCED.-1",
+        "TranslationValue": "offline requests synced successfully"
+    },
+    {
+        "TranslationKey": "en-CA.PROMPT.QUEUESYNCEDFAIL.-1",
+        "TranslationValue": "offline requests synced failed. Please check inbox"
+    },
+    {
+        "TranslationKey": "en-CA.MAPS.ClickMap.-1",
+        "TranslationValue": "Click the map to select area"
+    },
+    {
+        "TranslationKey": "en-CA.MAPS.BuildingsFound.-1",
+        "TranslationValue": "Buildings found in the area:"
+    },
+    {
+        "TranslationKey": "en-CA.MAPS.MapsUnavailable.-1",
+        "TranslationValue": "Maps not available"
+    },
+    {
+        "TranslationKey": "en-CA.Buildings.BuildingDataAlreadyExist.-1",
+        "TranslationValue": "Maps not available"
+    },
+    {
+        "TranslationKey": "en-CA.Buildings.SearchAreaButton.-1",
+        "TranslationValue": "Search this area"
+    },
+    {
+        "TranslationKey": "en-CA.Buildings.SelectMoreBuildings.-1",
+        "TranslationValue": "Select more buildings"
+    },
+    {
+        "TranslationKey": "en-CA.Buildings.LocationNotavailable.-1",
+        "TranslationValue": "Location not available"
+    },
+    {
+        "TranslationKey": "en-CA.Buildings.BUILDINGSNOTFOUND.-1",
+        "TranslationValue": "No buildings found. Search other area"
+    },
+    {
+        "TranslationKey": "en-CA.PROMPT.DATASYNCFAIL.-1",
+        "TranslationValue": "Real condition data synced failed."
+    },
+    {
+        "TranslationKey": "en-CA.PROMPT.DATASYNCCOMPLETED.-1",
+        "TranslationValue": "Real condition data synced completed."
+    }
+]

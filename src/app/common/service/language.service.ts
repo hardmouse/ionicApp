@@ -13,7 +13,8 @@ export class LanguageService {
     }
 
     private get(locale: string) {
-        let url = UrlConfig.baseUrlRealHelpWebApi_Original + `translate/gettranslationsbydomain/REALCONDITION_MOBILE/${locale}/-1`; //+ '?sessionid={AB2E286B-30DB-4627-B99D-09F8BA5100A6}';
+        // let url = UrlConfig.baseUrlRealHelpWebApi_Original + `translate/gettranslationsbydomain/REALCONDITION_MOBILE/${locale}/-1`; //+ '?sessionid={AB2E286B-30DB-4627-B99D-09F8BA5100A6}';
+        let url = "./assets/mockData/REALCONDITION_MOBILE.json"
         return this.http.get(url);
     }
 
