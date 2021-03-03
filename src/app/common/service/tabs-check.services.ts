@@ -20,8 +20,8 @@ export class TabsCheckService implements CanActivate {
     route: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot
     ){
-      // console.log("route:",route);
-      // console.log("state:",state);
+    // console.log("route:",route);
+    // console.log("state:",state);
     this.targetUrl = state.url;
 
     if(route.routeConfig.path=="equipmentaddtab"){
@@ -38,7 +38,6 @@ export class TabsCheckService implements CanActivate {
       this.presentAlertConfirm();
       return false;
     }
-    
   }
 
   
