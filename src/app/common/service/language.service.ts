@@ -14,7 +14,8 @@ export class LanguageService {
 
     private get(locale: string) {
         // let url = UrlConfig.baseUrlRealHelpWebApi_Original + `translate/gettranslationsbydomain/REALCONDITION_MOBILE/${locale}/-1`; //+ '?sessionid={AB2E286B-30DB-4627-B99D-09F8BA5100A6}';
-        let url = "./assets/mockData/REALCONDITION_MOBILE.json"
+        let url = "./assets/mockData/REALCONDITION_MOBILE.json";
+        // console.log("urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl",url);
         return this.http.get(url);
     }
 
@@ -44,10 +45,13 @@ export class LanguageService {
 
     private async getRCMOptions() {
         const url = UrlConfig.baseUrlRealCondition_Original + 'api/offline/rcmoptions';
+        // const url = UrlConfig.baseUrlRealCondition_Original;
+        // console.log("+++++",url);
         return new Promise((resolve, reject) => {
+            // console.log("+++++++++++++++++++++++++++++++",resolve, "RJ:",reject);
             this.http.get(url)
                 .subscribe((data: any) => {
-                    console.log(data);
+                    console.log("+++++++++++++++++++++++++++++++",data);
                     localStorage.setItem('RCMOPTIONS', JSON.stringify(data));
                     resolve(true)
                 }, (error) => { console.log("Error getting rcm options"); reject(error) });

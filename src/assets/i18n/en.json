@@ -1,5 +1,12 @@
 {
   "tab1": {
     "search":"Search"
+  },
+  "tabs": {
+    "AddEquipment":"Add Equipment",
+    "MyRequests":"My Requests",
+    "FindBuilding":"Find Building",
+    "FindEquipment":"Find Equipment",
+    "DownloadData":"Download"
   }
 }

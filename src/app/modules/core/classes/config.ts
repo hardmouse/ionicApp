@@ -24,6 +24,39 @@ export class UrlConfig {
           return this.baseUrlRealCondition_Original;
     }
     
+     public static get baseUrlClientRequest_Original(): string 
+     {
+          return 'http://localhost:8100/RealSuiteApps/RealSuiteWebAPIs/RealClientRequest/api/';
+     }
+     public static get baseUrlClientLogo_Original(): string 
+     {
+          return 'http://localhost:8100/RealSuite/';
+     }
+     public static get baseUrlRealHelpWebApi_Original(): string 
+     {
+          return 'http://localhost:8100/RealSuiteApps/RealHelp.WebApi/api/';
+     }
+     public static get baseUrlRealSuitePublic_Original(): string 
+     {
+          return 'http://localhost:8100/RealSuitePublic/';
+     }
+     public static get baseUrlRealSuite_Original(): string 
+     {
+          return 'http://localhost:8100/RealsuiteApps/RealSuite/';
+     }
+     public static get baseUrlRealCondition_Original(): string 
+     {
+          return 'http://localhost:8100/RealCondition.WebApi/api/';
+     }
+     public static get allowedUrls_Original(): Array<string> {
+          return [
+               'http://localhost:8100/realsuite/clientlogo/',
+               'http://localhost:8100/realsuiteapps/realhelp.webapi/api/',
+               'http://localhost:8100/realsuitepublic/',
+               'http://localhost:8100/realsuiteapps/realsuite/',
+               'http://localhost:8100/realsuiteapps/realcondition/'
+          ];
+     }
 
 
 
@@ -129,33 +162,33 @@ export class UrlConfig {
 
      
      // qa02 
-     public static get baseUrlClientRequest_Original(): string {
-          return 'https://qa02.bljc.com/RealSuiteApps/RealSuiteWebAPIs/RealClientRequest/api/';
-     }
-     public static get baseUrlClientLogo_Original(): string {
-          return 'https://qa02.bljc.com/RealSuite/';
-     }
-     public static get baseUrlRealHelpWebApi_Original(): string {
-          return 'https://qa02.bljc.com/RealSuiteApps/RealHelp.WebApi/api/';
-     }
-     public static get baseUrlRealSuitePublic_Original(): string {
-          return 'https://qa02.bljc.com/RealSuitePublic/';
-     }
-     public static get baseUrlRealSuite_Original(): string {
-          return 'https://qa02.bljc.com/RealsuiteApps/RealSuite/';
-     }
-     public static get baseUrlRealCondition_Original(): string {
-          return 'https://qa02.bljc.com/RealsuiteApps/RealCondition/';
-     }
-     public static get allowedUrls_Original(): Array<string> {
-          return [
-               'https://qa02.bljc.com/realsuite/clientlogo/',
-               'https://qa02.bljc.com/realsuiteapps/realhelp.webapi/api/',
-               'https://qa02.bljc.com/realsuitepublic/',
-               'https://qa02.bljc.com/realsuiteapps/realsuite/',
-               'https://qa02.bljc.com/realsuiteapps/realcondition/'
-          ];
-     }
+     // public static get baseUrlClientRequest_Original(): string {
+     //      return 'https://qa02.bljc.com/RealSuiteApps/RealSuiteWebAPIs/RealClientRequest/api/';
+     // }
+     // public static get baseUrlClientLogo_Original(): string {
+     //      return 'https://qa02.bljc.com/RealSuite/';
+     // }
+     // public static get baseUrlRealHelpWebApi_Original(): string {
+     //      return 'https://qa02.bljc.com/RealSuiteApps/RealHelp.WebApi/api/';
+     // }
+     // public static get baseUrlRealSuitePublic_Original(): string {
+     //      return 'https://qa02.bljc.com/RealSuitePublic/';
+     // }
+     // public static get baseUrlRealSuite_Original(): string {
+     //      return 'https://qa02.bljc.com/RealsuiteApps/RealSuite/';
+     // }
+     // public static get baseUrlRealCondition_Original(): string {
+     //      return 'https://qa02.bljc.com/RealsuiteApps/RealCondition/';
+     // }
+     // public static get allowedUrls_Original(): Array<string> {
+     //      return [
+     //           'https://qa02.bljc.com/realsuite/clientlogo/',
+     //           'https://qa02.bljc.com/realsuiteapps/realhelp.webapi/api/',
+     //           'https://qa02.bljc.com/realsuitepublic/',
+     //           'https://qa02.bljc.com/realsuiteapps/realsuite/',
+     //           'https://qa02.bljc.com/realsuiteapps/realcondition/'
+     //      ];
+     // }
 
 
      //ua03

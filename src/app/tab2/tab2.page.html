@@ -24,7 +24,7 @@
               <div (click)="showRejected = !showRejected; toggleState();" [ngClass]="{'hilite':showRejected}">Rejected</div>
               <div (click)="showPending = !showPending; toggleState();" [ngClass]="{'hilite':showPending}">Pending</div>
             </div>
-            <ion-searchbar (ionChange)='onChangeTime($event.target.value)' class="com-searchbar" [(ngModel)]="searchRequestsValue"></ion-searchbar>\
+            <ion-searchbar (ionChange)='onChangeTime($event.target.value)' class="com-searchbar" [(ngModel)]="searchRequestsValue"></ion-searchbar>
           </ion-toolbar>
           <ion-list>
             <ion-item-sliding *ngFor="let item of searchRequestsListFilter; let i = index">
@@ -37,11 +37,11 @@
                 </ion-item-option>
               </ion-item-options> -->
               <ion-item class="item-wrapper" (click)="select(item)">
-                <ion-button [color]="getButtonColor(item.State)" size="small" class="side-tab">{{item.state}}</ion-button>
+                <ion-button [color]="getButtonColor(item.state)" size="small" class="side-tab">{{item.state}}</ion-button>
                 <ion-text>
-                  <h4 innerHTML="{{item.BuildingItemNo | highlighSearch : searchRequestsValue}}" [ngClass]="{'top-0':item.err}"></h4>
+                  <h4 innerHTML="{{item.BuildingItemCode | highlighSearch : searchRequestsValue}}" [ngClass]="{'top-0':item.err}"></h4>
                   <div class="card-content">
-                    <p innerHTML="{{item.EquipmentNo | highlighSearch : searchRequestsValue}}"></p>
+                    <p innerHTML="{{item.FieldItemNumber | highlighSearch : searchRequestsValue}}"></p>
                     <p class="date">{{item.sRequestDate}}</p>
                   </div>
                   <ng-container *ngFor="let subItem of item.EquipmentEntityChanges; let j = index">

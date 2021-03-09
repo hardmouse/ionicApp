@@ -15,8 +15,7 @@ export class Tab2Page {
   showRejected:boolean = true;
   showPending:boolean = true;
   searchRequestsValue:string;
-  searchRequestsList:any = [];
-  //searchRequestsListFilter:any = [];
+  searchRequestsList:EquipmentChangeSearchResult[] = [];
   PageNumber:number=1;
   searchRequestsListFilter:EquipmentChangeSearchResult[] = [];
 
@@ -58,26 +57,17 @@ export class Tab2Page {
   }
 
   getProjectInfo(){
-    const url = 'equipmentchangerequests/requestlist';
+    // const url = 'equipmentchangerequests/requestlist';
+    const url = 'requests/requestList ';
     let body : ApprovalPortalFilter = new ApprovalPortalFilter();
     this.subs.clientSelected = -1;
     body.PageNumber =  this.PageNumber;
     body.PageSize = 1000;
     const request = JSON.stringify(body);
-    this.mobile.post(url,request,"").subscribe( (sc: EquipmentChangeSearchResults)  =>{
-      console.log(sc);
-      this.searchRequestsListFilter = sc.SearchResults;
+    this.mobile.post(url,request,"").subscribe( (sc: EquipmentChangeSearchResults) =>{
+      this.searchRequestsList = this.searchRequestsListFilter = sc['Data'].Requests.ListOfRequest;
       this.searchRequestsListFilter.forEach(x=>{
         x.sRequestDate =  this.funcs.formatDate(x.RequestDate);
-        if(x.EquipmentEntityChanges.findIndex(y=>y.Status.toUpperCase() == "REJECTED")>= 0){
-          x.State = "REJECTED";
-        }
-        else if(x.EquipmentEntityChanges.findIndex(y=>y.Status.toUpperCase() == "PENDING")>= 0){
-          x.State = "PENDING";
-        }
-        else{
-          x.State = "APPROVED";
-        }
       });
     })
   }
@@ -86,9 +76,11 @@ export class Tab2Page {
     this.onChangeTime(this.searchRequestsValue);
   }
   onChangeTime(e) {
+    console.log(e);
     this.searchRequestsValue = (e!==undefined)?e.trim():"";
     this.searchRequestsListFilter = [];
     this.searchRequestsList.forEach(u=>{
+      console.log(u);
       if(this.verifySearch(u) && this.verifyState(u)){
         this.searchRequestsListFilter.push(u);
       }

@@ -28,6 +28,11 @@ const routes: Routes = [
         loadChildren: () => import('../search/search.module').then( m => m.SearchPageModule)
       },
       {
+        path: 'map',
+        canActivate: [TabsCheckService],
+        loadChildren: () => import('../tab1/map-search/map-search-routing.module').then( m => m.MapSearchPageRoutingModule)
+      },
+      {
         path: 'equipmentadd',
         loadChildren: () => import('../equipment-add-flow/equipment-add-flow.module').then(m => m.EquipmentAddFlowPageModule)
       },

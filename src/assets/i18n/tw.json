@@ -1,5 +1,12 @@
 {
   "tab1": {
     "search":"搜索"
+  },
+  "tabs": {
+    "AddEquipment":"增加器材",
+    "MyRequests":"請求清單",
+    "FindBuilding":"尋找建築",
+    "FindEquipment":"尋找器材",
+    "DownloadData":"離線下載"
   }
 }

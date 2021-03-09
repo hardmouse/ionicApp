@@ -1,5 +1,12 @@
 {
   "tab1": {
     "search":"Rechercher"
+  },
+  "tabs": {
+    "AddEquipment":"Ajouter un équipement",
+    "MyRequests":"Mes demandes",
+    "FindBuilding":"Trouver un bâtiment",
+    "FindEquipment":"Rechercher un équipement",
+    "DownloadData":"Télécharger"
   }
 }

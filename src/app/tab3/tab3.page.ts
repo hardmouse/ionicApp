@@ -77,17 +77,19 @@ export class Tab3Page {
   marker: any;
   mapsAvailable = true;
   radius = 2000; //in meters;
+  
   async initMap() {
     const options = JSON.parse(localStorage.getItem('RCMOPTIONS'))
     console.log('RCMOPTS', options);
-    if (!options) {
-      await this.mapsUnavailable();
-      return;
-    }
-    if (options.MapsSearchArea)
-      this.radius = +options.MapsSearchArea * 1000;
+    // if (!options) {
+    //   await this.mapsUnavailable();
+    //   return;
+    // }
+    var tn = 2;
+    if (tn)
+      this.radius = +tn * 1000;
     const loader = new Loader({
-      apiKey: options.GoogleMapsAPIKey,
+      apiKey: "AIzaSyCWo9pO0zaiW9b0xWFKfMXCOW1LnfojQBE",
       version: "weekly",
       libraries: ['places']
     });
@@ -108,6 +110,38 @@ export class Tab3Page {
       });
     }).catch(() => this.mapsUnavailable());
   }
+
+  // async initMap() {
+  //   const options = JSON.parse(localStorage.getItem('RCMOPTIONS'))
+  //   console.log('RCMOPTS', options);
+  //   if (!options) {
+  //     await this.mapsUnavailable();
+  //     return;
+  //   }
+  //   if (options.MapsSearchArea)
+  //     this.radius = +options.MapsSearchArea * 1000;
+  //   const loader = new Loader({
+  //     apiKey: options.GoogleMapsAPIKey,
+  //     version: "weekly",
+  //     libraries: ['places']
+  //   });
+
+  //   loader.load().then(() => {
+  //     this.map = new google.maps.Map(this.gmap.nativeElement as HTMLElement, {
+  //       center: this.center,
+  //       zoom: 13
+  //     });
+  //     const centerControlDiv = document.createElement("div");
+  //     this.searchThisArea(centerControlDiv);
+  //     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  //     this.drawCircle();
+
+  //     google.maps.event.addListener(this.map, 'click', (event) => {
+  //       this.center = event.latLng;
+  //       this.drawCircle();
+  //     });
+  //   }).catch(() => this.mapsUnavailable());
+  // }
 
   private async mapsUnavailable() {
     const message = await this.languageService.translate('MAPS', 'MapsUnavailable');
