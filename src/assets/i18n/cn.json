@@ -1,0 +1,12 @@
+{
+  "tab1": {
+    "search":"搜索"
+  },
+  "tabs": {
+    "AddEquipment":"添加设备",
+    "MyRequests":"我的要求",
+    "FindBuilding":"寻找建物",
+    "FindEquipment":"查找设备",
+    "DownloadData":"下载资料"
+  }
+}

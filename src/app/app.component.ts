@@ -162,7 +162,6 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
     }
   }
 
-
   registerDeepLinksListners = () => {
 
     if (this.platformTypeService.isAndroid) {
@@ -208,7 +207,6 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
 
   }
 
-
   dismissSafariViewController = () => {
     if( this.platformTypeService.isHybrid )
     {
@@ -226,7 +224,6 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
     }
   }
 
-
   contrastModeCheck(){
     let toggleCtrl:boolean;
     if(localStorage.getItem('contrastDark')!="true" || localStorage.getItem('contrastDark')==null){
@@ -238,14 +235,17 @@ export class AppComponent extends CleanupBasePage  implements OnDestroy {
     document.body.classList.toggle('dark',toggleCtrl);
   }
   langSetCheck(){
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    let _lang:string='';
     if(!localStorage.getItem('langSet')){
-      localStorage.setItem('langSet', navigator.language);
-      this.translateConfigService.setLanguage(navigator.language);
+      _lang = navigator.language;
+      localStorage.setItem('langSet', _lang);
     }else{
-      this.translateConfigService.setLanguage(localStorage.getItem('langSet'));
+      _lang = localStorage.getItem('langSet');
     }
-    // console.log(this.translateConfigService.getCurrentLanguage(),"<service ::: local>",localStorage.getItem('langSet'));
+    Promise.all(navigator.language).then((xxx)=>{
+      this.translateConfigService.setLanguage(_lang);
+    });
+    
   }
 
   getUserInfo(){

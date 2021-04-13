@@ -22,7 +22,8 @@ export class TranslateConfigService {
   setLanguage(setLang) {
     this.translate.setDefaultLang(setLang);
     this.translate.use(setLang);
-    console.log(">>>>>>> setLanguage",setLang,">>>",this.translate.stream('tab1.search'));
+    // console.log(">>>>>>> setLanguage",setLang,">>>",this.translate.stream('tab1.search'));
+    console.log(">>>>>>> setLanguage",setLang,">>>",this.translate.getLangs());
     // this.translate.get('tab1.search').subscribe((translated: string) => {
     //   console.log("jjjjjjjjjjjjjjjjjjjjjjj>>",translated);
     //   //=> 'Hello world'

@@ -39,6 +39,7 @@
         <ion-button (click)="setLang('en')">ENG</ion-button>
         <ion-button (click)="setLang('es')">ESP</ion-button>
         <ion-button (click)="setLang('fr')">FRE</ion-button>
+        <ion-button (click)="setLang('cn')">CHN</ion-button>
         <ion-button (click)="setLang('tw')">TWN</ion-button>
       </ion-col>
     </ion-row>
@@ -56,7 +57,7 @@
           (iconclick)="getEquipValue($event)"
           [hasplaceholder]="true"
         ></input-con>
-        <div *ngIf="showSearchEquipList" class="dropdown-content long" style="width: 97%;right:0.3rem;">
+        <div *ngIf="showSearchEquipList" class="dropdown-content long" >
           <div *ngIf="showNoResult" style="color:#00467f">No results found </div>
           <ng-container *ngFor="let sl of equipFilter; let i=index">
             <div class="dropdown-item">
